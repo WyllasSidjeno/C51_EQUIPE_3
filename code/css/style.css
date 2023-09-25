@@ -1,5 +1,14 @@
 @import url('https://fonts.cdnfonts.com/css/magic-school-one');
 
+ul {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px auto;
+    padding: 0px;
+    backdrop-filter: blur(10px);
+    background: #474747;
+}
+
 .index {
     background-image: url(../images/index-background.png);
     background-size: cover;
