@@ -38,7 +38,7 @@
 }
 
 .commentaires {
-    background-image: url("../static/commentaires-background.jpg");
+    background-image: url("../static/commentaires-background.png");
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
