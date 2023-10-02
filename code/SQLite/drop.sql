@@ -1,5 +1,7 @@
-DROP TABLE IF EXISTS  item;
-DROP TABLE IF EXISTS item_modifier;
-DROP TABLE IF EXISTS item_type;
-DROP TABLE IF EXISTS Player;
-DROP TABLE IF EXISTS Password;
+PRAGMA writable_schema = 1;
+delete from sqlite_master where type in ('table', 'index', 'trigger');
+PRAGMA writable_schema = 0;
+
+VACUUM;
+
+PRAGMA INTEGRITY_CHECK;
