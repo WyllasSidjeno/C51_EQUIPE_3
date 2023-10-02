@@ -1,13 +1,14 @@
 // Option 1
-// class Sound {
-//     constructor() {
-//         this.click = "../static/test.mp3";
-//         this.menu = /*"menu-music.mp3";*/
-//         this.donjon = "../static/donjon-music.mp3";
-//         this.cave = "";
-//         this.foret = "";
-//     }
-// }
+class Sound {
+    constructor() {
+        this.click = "../static/test.mp3";
+        this.menu = /*"menu-music.mp3";*/
+        this.donjon = "../static/donjon-music.mp3";
+        this.cave = "";
+        this.foret = "";
+    }
+}
+export default Sound;
 
 
 // Option 2

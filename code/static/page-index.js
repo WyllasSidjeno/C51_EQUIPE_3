@@ -1,18 +1,18 @@
-// import Sound from './sound.js';
+import Sound from "./sound.js";
 
-class Sound {
-    constructor() {
-        this.click = "../static/test.mp3";
-        this.menu = /*"menu-music.mp3";*/
-        this.donjon = "../static/donjon-music.mp3";
-        this.cave = "";
-        this.foret = "";
-    }
-}
+// class Sound {
+//     constructor() {
+//         this.click = "../static/test.mp3";
+//         this.menu = /*"menu-music.mp3";*/
+//         this.donjon = "../static/donjon-music.mp3";
+//         this.cave = "";
+//         this.foret = "";
+//     }
+// }
 
 window.addEventListener('load', () => {
-    let sound = new Sound();
-    let clickAudio = new Audio(sound.click);
+    // let sound = new Sound();
+    // let clickAudio = new Audio(sound.click);
     let btn_connexion = document.querySelector('#connexion');
     let btn_inscription = document.querySelector('#inscription');
 
@@ -26,7 +26,7 @@ window.addEventListener('load', () => {
         confirmation.style.display = 'none';
         type_connexion.innerHTML = 'Connexion';
         type_connexion_btn.innerHTML = 'Connexion';
-        clickAudio.play();
+        new Audio(new Sound().click).play();
     });
 
     btn_inscription.addEventListener('click', () => {
@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
         confirmation.style.display = 'block';
         type_connexion.innerHTML = 'Inscription';
         type_connexion_btn.innerHTML = 'Inscription';
-        clickAudio.play();
+        new Audio(new Sound().click).play();
     });
 
     // SON 
