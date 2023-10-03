@@ -1,15 +1,5 @@
 import Sound from "./sound.js";
 
-// class Sound {
-//     constructor() {
-//         this.click = "../static/test.mp3";
-//         this.menu = /*"menu-music.mp3";*/
-//         this.donjon = "../static/donjon-music.mp3";
-//         this.cave = "";
-//         this.foret = "";
-//     }
-// }
-
 window.addEventListener('load', () => {
     // let sound = new Sound();
     // let clickAudio = new Audio(sound.click);
