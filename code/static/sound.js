@@ -8,8 +8,6 @@ class Sound {
         this.foret = "";
     }
 }
-export default Sound;
-
 
 // Option 2
 // const sound = {

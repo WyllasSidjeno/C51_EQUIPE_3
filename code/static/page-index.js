@@ -1,5 +1,3 @@
-import Sound from "./sound.js";
-
 window.addEventListener('load', () => {
     // let sound = new Sound();
     // let clickAudio = new Audio(sound.click);
