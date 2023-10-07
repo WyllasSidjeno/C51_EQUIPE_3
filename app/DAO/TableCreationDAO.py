@@ -1,9 +1,9 @@
 from enum import Enum, auto
 
-from app.DAO.abstractDAO.SqliteDao import SqliteDao
+from app.DAO.abstractDAO.SqliteDAO import SqliteDAO
 
 
-class TableCreationDao(SqliteDao):
+class TableCreationDao(SqliteDAO):
     class ScriptType(Enum):
         CREATE = auto()
         DROP = auto()
