@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
-from app.DAO.abstractDAO.SqliteDAO import SqliteDAO
+from abstractDAO.SqliteDAO import SqliteDAO
 
 
 class UserDAO(SqliteDAO):

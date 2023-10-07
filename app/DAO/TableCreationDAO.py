@@ -1,10 +1,9 @@
 from enum import Enum, auto
 
-from app.DAO.abstractDAO.SqliteDAO import SqliteDAO
+from abstractDAO.SqliteDAO import SqliteDAO
 
 
 class TableCreationDao(SqliteDAO):
-
     def __init__(self):
         super().__init__()
 
@@ -23,5 +22,5 @@ class TableCreationDao(SqliteDAO):
         self.create_tables()
 
 dao = TableCreationDao()
-dao.drop_tables()
+#dao.drop_tables()
 dao.create_tables()
