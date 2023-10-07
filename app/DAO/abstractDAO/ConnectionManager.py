@@ -1,10 +1,11 @@
 import os
 import sqlite3
+import sys
 
 
 class ConnectionManager:
     def __init__(self):
-        self.path = (os.getcwd()[:os.getcwd().rfind("\\")] + "\\sqlite\\")
+        self.path = (os.path.dirname(os.path.abspath(sys.argv[0])) + "\\sqlite\\")
         self.name = "sqlite.db"
         self.pragma = "PRAGMA foreign_keys = ON;"
 
@@ -17,8 +18,8 @@ class ConnectionManager:
             self._conn.row_factory = sqlite3.Row
             self._conn.commit()
 
-
     def close(self):
         if self._conn:
             self._conn.close()
             self._conn = None
+

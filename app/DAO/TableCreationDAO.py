@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
-from abstractDAO.SqliteDAO import SqliteDAO
+from app.DAO.abstractDAO.SqliteDAO import SqliteDAO
 
 
 class TableCreationDao(SqliteDAO):
@@ -9,8 +9,7 @@ class TableCreationDao(SqliteDAO):
 
     def create_tables(self):
         scripts = self.get_scripts(self._ScriptType.CREATE)
-        for script in scripts:
-            self.execute_script(script)
+        self.execute_scripts(scripts)
 
     def drop_tables(self):
         scripts = self.get_scripts(self._ScriptType.DROP)
@@ -21,6 +20,3 @@ class TableCreationDao(SqliteDAO):
         self.drop_tables()
         self.create_tables()
 
-dao = TableCreationDao()
-#dao.drop_tables()
-dao.create_tables()

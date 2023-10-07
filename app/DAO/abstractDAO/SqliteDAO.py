@@ -2,7 +2,7 @@ import os
 import sqlite3
 from enum import auto, Enum
 
-from abstractDAO.ConnectionManager import ConnectionManager
+from app.DAO.abstractDAO.ConnectionManager import ConnectionManager
 
 
 class SqliteDAO(ConnectionManager):
@@ -25,6 +25,7 @@ class SqliteDAO(ConnectionManager):
             if args:
                 cursor.execute(script, args)
             else:
+                print(script)
                 cursor.executescript(script)
             result = cursor.fetchone()
             self._conn.commit()
@@ -33,7 +34,7 @@ class SqliteDAO(ConnectionManager):
             print(e)
         finally:
             self.close()
-        return dict(zip(result.keys(), result))
+        return dict(zip(result.keys(), result)) if result else None
 
     def execute_scripts(self, scripts: list[str], arguments: list[tuple] = None):
         self.connect()
@@ -44,15 +45,18 @@ class SqliteDAO(ConnectionManager):
                 if arguments and i < len(arguments):
                     cursor.execute(script, arguments[i])
                 else:
+                    print(script)
                     cursor.executescript(script)
-                results.append(cursor.fetchone())
+                value = cursor.fetchone()
+                if value:
+                    results.append(dict(zip(value.keys(), value)))
             self._conn.commit()
         except sqlite3.Error as e:
             print("An SQL error occurred:")
             print(e)
         finally:
             self.close()
-        return [dict(zip(result.keys(), result)) for result in results]
+        return results
 
     def get_scripts(self, script_type):
         scripts = []
