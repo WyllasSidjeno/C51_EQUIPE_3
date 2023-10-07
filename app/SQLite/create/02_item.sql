@@ -30,12 +30,12 @@ CREATE TABLE Modifier_types (
     name    VARCHAR(16) NOT NULL        UNIQUE
 );
 
-CREATE TABLE Player_item (
+CREATE TABLE User_item (
     ID          INTEGER         NOT NULL        PRIMARY KEY     AUTOINCREMENT,
-    player_id   INTEGER         NOT NULL,
+    user_id     INTEGER         NOT NULL,
     item_id     INTEGER         NOT NULL,
 
-    FOREIGN KEY (player_id) REFERENCES Player(id)
+    FOREIGN KEY (user_id) REFERENCES User(id)
         ON DELETE CASCADE,
     FOREIGN KEY (item_id)   REFERENCES Item(id)
         ON DELETE CASCADE
