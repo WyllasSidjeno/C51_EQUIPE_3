@@ -18,7 +18,7 @@ class SqliteDAO(ConnectionManager):
             os.makedirs(self.path)
 
     def execute_script(self, script: str, *args):
-        result = []
+        result = None
         self.connect()
         try:
             cursor = self._conn.cursor()
@@ -26,14 +26,14 @@ class SqliteDAO(ConnectionManager):
                 cursor.execute(script, args)
             else:
                 cursor.executescript(script)
-            result = cursor.fetchall()
+            result = cursor.fetchone()
             self._conn.commit()
         except sqlite3.Error as e:
             print("An SQL error occurred:")
             print(e)
         finally:
             self.close()
-        return result
+        return dict(zip(result.keys(), result))
 
     def execute_scripts(self, scripts: list[str], arguments: list[tuple] = None):
         self.connect()
@@ -45,14 +45,14 @@ class SqliteDAO(ConnectionManager):
                     cursor.execute(script, arguments[i])
                 else:
                     cursor.executescript(script)
-                results.append(cursor.fetchall())
+                results.append(cursor.fetchone())
             self._conn.commit()
         except sqlite3.Error as e:
             print("An SQL error occurred:")
             print(e)
         finally:
             self.close()
-        return results
+        return [dict(zip(result.keys(), result)) for result in results]
 
     def get_scripts(self, script_type):
         scripts = []
@@ -67,3 +67,4 @@ class SqliteDAO(ConnectionManager):
 
     def get_action_script(self, script_name):
         return self.get_script(self._ScriptType.ACTION, script_name)
+
