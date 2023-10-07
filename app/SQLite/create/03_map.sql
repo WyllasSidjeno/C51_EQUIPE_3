@@ -1,6 +1,6 @@
 CREATE TABLE Map(
     ID      INTEGER             NOT NULL    PRIMARY KEY     AUTOINCREMENT,
-    nom     VARCHAR(32)     NOT NULL    UNIQUE,
+    nom     VARCHAR(32)         NOT NULL    UNIQUE,
     width   INTEGER             NOT NULL,
     height  INTEGER             NOT NULL
 );
@@ -11,21 +11,21 @@ CREATE TABLE Map_tile(
 
     x_cords         INTEGER             NOT NULL,
     y_cords         INTEGER             NOT NULL,
-    tiles_type      VARCHAR(16)     NOT NULL UNIQUE,
+    tiles_type      VARCHAR(16)         NOT NULL UNIQUE,
 
     FOREIGN KEY (map_id) REFERENCES  Map(ID)
         ON DELETE CASCADE
 );
 
-CREATE TABLE Player_map(
+CREATE TABLE User_map(
     ID          INTEGER     NOT NULL    PRIMARY KEY         AUTOINCREMENT ,
-    player_id   INTEGER     NOT NULL,
+    user_id     INTEGER     NOT NULL,
     map_id      INTEGER     NOT NULL,
 
     checkpoint_id       INTEGER     NOT NULL,
     tempative_score     INTEGER     NOT NULL,
 
-    FOREIGN KEY (player_id) REFERENCES Player(ID)
+    FOREIGN KEY (user_id) REFERENCES User(ID)
        ON DELETE CASCADE,
     FOREIGN KEY (map_id) REFERENCES Map(ID)
        ON DELETE CASCADE
@@ -39,18 +39,18 @@ CREATE TABLE Map_enemies(
     y_cords         INTEGER     NOT NULL ,
     enemy_type      INTEGER     NOT NULl,
 
-    FOREIGN KEY (player_map_id) REFERENCES Player_map(ID)
+    FOREIGN KEY (player_map_id) REFERENCES User_map(ID)
         ON DELETE CASCADE
 );
 
 CREATE TABLE Score(
     ID          INTEGER     NOT NULL    PRIMARY KEY         AUTOINCREMENT ,
-    player_id   INTEGER     NOT NULL,
+    user_id   INTEGER     NOT NULL,
     map_id      INTEGER     NOT NULL,
 
     score       INTEGER     NOT NULL,
 
-    FOREIGN KEY (player_id) REFERENCES Player(ID)
+    FOREIGN KEY (user_id) REFERENCES User(ID)
         ON DELETE CASCADE,
     FOREIGN KEY (map_id) REFERENCES Map(ID)
         ON DELETE CASCADE
