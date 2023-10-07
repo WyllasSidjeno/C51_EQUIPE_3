@@ -9,6 +9,9 @@ window.addEventListener('load', () => {
     let type_connexion = document.querySelector('#type-connexion');
     let type_connexion_btn = document.querySelector('#type-connexion-btn');
 
+    btn_connexion.style.display = 'block';
+    btn_inscription.style.display = 'block';
+
     btn_connexion.addEventListener('click', () => {
         page_connexion.style.display = 'block';
         confirmation.style.display = 'none';

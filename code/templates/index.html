@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block contenu %}
-
+    <script src="{{ url_for('static', filename='page-index.js')}}"></script>
     <title>{% block titre %} Accueil {% endblock %}</title>
     {% block classe %} index {% endblock %}
     <h1 class="titre text">Run Like Hell</h1>

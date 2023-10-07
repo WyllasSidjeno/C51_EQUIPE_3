@@ -6,11 +6,8 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
         <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/magic-school-one">
-
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png')}}">
-
         <script src="{{ url_for('static', filename='sound.js')}}"></script>
-        <script src="{{ url_for('static', filename='page-index.js')}}"></script>
     </head>
     <body class="{% block classe %}{% endblock %}">
         
@@ -20,8 +17,8 @@
             <a class="text" style="font-size: 50px; color:#cd6155" href="{{ url_for('commentaires') }}">Commentaires</a>
             <a class="text" style="font-size: 50px; color:#cd6155" href="{{ url_for('apropos') }}">À Propos</a>
             <a class="text" style="font-size: 50px; color:#cd6155" href="{{ url_for('contact') }}">Contact</a>
-            <a class="text" id="connexion" style="font-size: 50px; float: right; color:#a569bd">Connexion</a>
-            <a class="text" id="inscription" style="font-size: 50px; float: right; color:#a569bd">Inscription</a>
+            <a class="text" id="connexion" style="font-size: 50px; float: right; color:#a569bd; display:none">Connexion</a>
+            <a class="text" id="inscription" style="font-size: 50px; float: right; color:#a569bd; display:none">Inscription</a>
         </div>
 
         <div class="contenu">

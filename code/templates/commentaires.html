@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block contenu %}
+    <script src="{{ url_for('static', filename='page-commentaires.js')}}"></script>
     <title>{% block titre %} Commentaires {% endblock %}</title>
     {% block classe %} commentaires {% endblock %}
 

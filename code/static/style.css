@@ -44,11 +44,22 @@
     overflow: hidden;
 }
 
+.apropos {
+    background-image: url("../static/apropos-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
 .titre {
     font-size: 150px;
     text-align: center;
     color: #ffffff;
     animation: titre 2s ease-in-out infinite alternate;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes titre {
