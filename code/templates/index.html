@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block contenu %}
+    <script src="{{ url_for('static', filename='page-index.js')}}"></script>
+    <title>{% block titre %} Accueil {% endblock %}</title>
+    {% block classe %} index {% endblock %}
+    <h1 class="titre text">Run Like Hell</h1>
+    
+    <div class="login-box">
+        <h2 id="type-connexion"></h2>
+        <form method="post">
+            <div class="user-box">
+                <input type="text" name="" required="">
+                <label>Nom d'utilisateur</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="" required="">
+                <label>Mot de passe</label>
+            </div>
+            <div class="confirmation">
+                <div class="user-box">
+                    <input type="password" name="" required="">
+                    <label>Mot de passe (Confirmation)</label>
+                </div>
+            </div>
+            <a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <p id="type-connexion-btn"></p>
+            </a>
+        </form>
+    </div>
+{% endblock %}
