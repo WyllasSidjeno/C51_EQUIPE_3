@@ -1,7 +1,14 @@
-from app.DAO.abstract.SqliteDao import SqliteDao
+from enum import Enum, auto
+
+from app.DAO.abstractDAO.SqliteDao import SqliteDao
 
 
 class TableCreationDao(SqliteDao):
+    class ScriptType(Enum):
+        CREATE = auto()
+        DROP = auto()
+        ACTION = auto()
+
     def __init__(self):
         super().__init__()
 
@@ -12,10 +19,12 @@ class TableCreationDao(SqliteDao):
 
     def drop_tables(self):
         scripts = self.get_scripts(self.ScriptType.DROP)
-        for script in scripts:
-            self.execute_script(script)
+        self.execute_scripts(scripts)
 
-    def debug_reset_db(self):
+    def reset_db(self):
         self.connect()
         self.drop_tables()
         self.create_tables()
+
+dao = TableCreationDao()
+dao.reset_db()

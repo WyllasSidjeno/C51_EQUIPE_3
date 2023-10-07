@@ -1,27 +1,34 @@
 import os
 import sqlite3
-from enum import Enum, auto
 
-from app.DAO.abstract.ConnectionManager import ConnectionManager
+from app.DAO.abstractDAO.ConnectionManager import ConnectionManager
 
 
 class SqliteDao(ConnectionManager):
-    class ScriptType(Enum):
-        CREATE = auto()
-        DROP = auto()
-        ACTION = auto()
-
     def __init__(self):
         super().__init__()
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
-    def execute_script(self, script):
+    def execute_script(self, script: str):
         self.connect()
         try:
-            cursor = self.__conn.cursor()
+            cursor = self._conn.cursor()
             cursor.executescript(script)
-            self.__conn.commit()
+            self._conn.commit()
+        except sqlite3.Error as e:
+            print("An SQL error occurred:")
+            print(e)
+        finally:
+            self.close()
+
+    def execute_scripts(self, scripts: list[str]):
+        self.connect()
+        try:
+            cursor = self._conn.cursor()
+            for script in scripts:
+                cursor.executescript(script)
+            self._conn.commit()
         except sqlite3.Error as e:
             print("An SQL error occurred:")
             print(e)
