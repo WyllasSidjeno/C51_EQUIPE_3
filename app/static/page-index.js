@@ -28,6 +28,10 @@ window.addEventListener('load', () => {
         new Audio(new Sound().click).play();
     });
 
+    type_connexion_btn.addEventListener('click', () => {
+        document.querySelector('form').submit();
+    });
+
     // SON 
     // let element = document.querySelectorAll(".text");
     // let clickAudio = new Audio(sound.click);
