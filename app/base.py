@@ -39,7 +39,6 @@ def index():
                 salt = os.urandom(16)
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 UserDAO().add_user(username, hashed_password, salt)
-
     return render_template('index.html')
 
 
@@ -64,7 +63,7 @@ def contact():
 
 
 def main():
-    mode_debug = int(1)
+    mode_debug = True
     app.run(debug=mode_debug)
 
 
