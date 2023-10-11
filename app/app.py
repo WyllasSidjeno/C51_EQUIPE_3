@@ -1,5 +1,6 @@
 from sys import argv
 from flask import Flask, render_template
+#from app.DAO.TableCreationDAO import TableCreationDao
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def jeu():
 
 @app.route('/commentaires/')
 def commentaires():
-    return render_template('commentaires.html') # TODO: Recuperer les commentaires de la base de donnees
+    return render_template('commentaires.html')  # TODO: Recuperer les commentaires de la base de donnees
  
 @app.route('/apropos/')
 def apropos():
