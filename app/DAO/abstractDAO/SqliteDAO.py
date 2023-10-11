@@ -2,7 +2,7 @@ import os
 import sqlite3
 from enum import auto, Enum
 
-from app.DAO.abstractDAO.ConnectionManager import ConnectionManager
+from DAO.abstractDAO.ConnectionManager import ConnectionManager
 
 
 class SqliteDAO(ConnectionManager):

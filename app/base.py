@@ -1,6 +1,6 @@
 from sys import argv
 from flask import Flask, render_template
-#from app.DAO.TableCreationDAO import TableCreationDao
+from DAO.TableCreationDAO import TableCreationDao
 
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ def contact():
     return render_template('contact.html')
  
 def main():
-    mode_debug = int(argv[1])
+    mode_debug = int(1)
     app.run(debug=mode_debug)     
      
 if __name__ == '__main__':
