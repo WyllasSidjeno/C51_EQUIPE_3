@@ -1,6 +1,7 @@
 from sys import argv
 from flask import Flask, render_template, request, redirect, url_for, flash
-from DAO.TableCreationDAO import TableCreationDao
+from DAO.UserDAO import UserDAO
+import hashlib, os
 
 app = Flask(__name__)
 
@@ -10,7 +11,11 @@ def index():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        print(username, password)
+
+        salt = os.urandom(16)
+        hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
+        dao = UserDAO()
+        dao.add_user(username, hashed_password, salt)
 
     return render_template('index.html')
 
