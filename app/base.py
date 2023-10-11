@@ -18,15 +18,8 @@ def index():
         print(type_connexion, username, password)
         if type_connexion == 'connexion':
             user = UserDAO().get_user_with_password(username)
-            if user is not None:
-                salt = user[0]
-                hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
-                if hashed_password == user[1]:
-                    print('connexion reussie')
-                else:
-                    print('mot de passe incorrect')
-            else:
-                print('utilisateur inconnu')
+            print(user)
+
         elif type_connexion == 'inscription':
             confirm_password = request.form['confirm_password']
             print(type_connexion, username, password, confirm_password)
