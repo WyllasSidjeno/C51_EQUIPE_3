@@ -1,6 +1,5 @@
 window.addEventListener('load', () => {
-    // let sound = new Sound();
-    // let clickAudio = new Audio(sound.click);
+    let sound = new Sound();
     let btn_connexion = document.querySelector('#connexion');
     let btn_inscription = document.querySelector('#inscription');
 
@@ -8,6 +7,7 @@ window.addEventListener('load', () => {
     let confirmation = document.querySelector('.confirmation');
     let type_connexion = document.querySelector('#type-connexion');
     let type_connexion_btn = document.querySelector('#type-connexion-btn');
+    let type_connextion_db = document.querySelector('.type-connexion');
 
     btn_connexion.style.display = 'block';
     btn_inscription.style.display = 'block';
@@ -17,7 +17,8 @@ window.addEventListener('load', () => {
         confirmation.style.display = 'none';
         type_connexion.innerHTML = 'Connexion';
         type_connexion_btn.innerHTML = 'Connexion';
-        new Audio(new Sound().click).play();
+        type_connextion_db.value = 'connexion';
+        new Audio(sound.click).play();
     });
 
     btn_inscription.addEventListener('click', () => {
@@ -25,7 +26,8 @@ window.addEventListener('load', () => {
         confirmation.style.display = 'block';
         type_connexion.innerHTML = 'Inscription';
         type_connexion_btn.innerHTML = 'Inscription';
-        new Audio(new Sound().click).play();
+        type_connextion_db.value = 'inscription';
+        new Audio(sound.click).play();
     });
 
     type_connexion_btn.addEventListener('click', () => {

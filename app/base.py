@@ -12,12 +12,31 @@ app = Flask(__name__)
 @app.route('/index/', methods=('GET', 'POST'))
 def index():
     if request.method == 'POST':
+        type_connexion = request.form['type']
         username = request.form['username']
         password = request.form['password']
-
-        salt = os.urandom(16)
-        hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
-        UserDAO().add_user(username, hashed_password, salt)
+        print(type_connexion, username, password)
+        if type_connexion == 'connexion':
+            user = UserDAO().get_user_with_password(username)
+            if user is not None:
+                salt = user[0]
+                hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
+                if hashed_password == user[1]:
+                    print('connexion reussie')
+                else:
+                    print('mot de passe incorrect')
+            else:
+                print('utilisateur inconnu')
+        elif type_connexion == 'inscription':
+            confirm_password = request.form['confirm_password']
+            print(type_connexion, username, password, confirm_password)
+            if password != confirm_password:
+                print('les mots de passe ne correspondent pas')
+            else:
+                print('inscription reussie')
+                salt = os.urandom(16)
+                hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
+                UserDAO().add_user(username, hashed_password, salt)
 
     return render_template('index.html')
 
