@@ -1,12 +1,11 @@
 import hashlib
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 from DAO.UserDAO import UserDAO
 
 app = Flask(__name__)
-
 
 @app.route('/')
 @app.route('/index/', methods=('GET', 'POST'))
@@ -26,6 +25,7 @@ def index():
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 if hashed_password == user['hash']:
                     print('connexion reussie')
+                    return redirect('/jeu/')
                 else:
                     print('mot de passe incorrect')
 
@@ -39,10 +39,13 @@ def index():
                 salt = os.urandom(16)
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 UserDAO().add_user(username, hashed_password, salt)
+                return redirect('/jeu/')
+        else:
+            redirect('/')
     return render_template('index.html')
 
 
-@app.route('/jeu/')
+@app.route('/jeu/', methods=['GET', 'POST'])
 def jeu():
     return render_template('jeu.html')
 
