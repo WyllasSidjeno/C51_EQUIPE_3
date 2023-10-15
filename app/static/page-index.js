@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
         page_connexion.style.display = 'block';
         confirmation.style.display = 'none';
         type_connexion.innerHTML = 'Connexion';
-        type_connexion_btn.innerHTML = 'Connexion';
+        type_connexion_btn.value = 'Connexion';
         type_connextion_db.value = 'connexion';
         new Audio(sound.click).play();
     });
@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
         page_connexion.style.display = 'block';
         confirmation.style.display = 'block';
         type_connexion.innerHTML = 'Inscription';
-        type_connexion_btn.innerHTML = 'Inscription';
+        type_connexion_btn.value = 'Inscription';
         type_connextion_db.value = 'inscription';
         new Audio(sound.click).play();
     });

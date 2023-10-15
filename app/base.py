@@ -25,7 +25,7 @@ def index():
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 if hashed_password == user['hash']:
                     print('connexion reussie')
-                    return redirect('/jeu/')
+                    return redirect('/')
                 else:
                     print('mot de passe incorrect')
 
@@ -39,7 +39,7 @@ def index():
                 salt = os.urandom(16)
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 UserDAO().add_user(username, hashed_password, salt)
-                return redirect('/jeu/')
+                return redirect('/')
         else:
             redirect('/')
     return render_template('index.html')
