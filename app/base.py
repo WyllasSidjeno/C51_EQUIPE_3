@@ -8,7 +8,7 @@ from DAO.UserDAO import UserDAO
 app = Flask(__name__)
 
 @app.route('/')
-@app.route('/index/', methods=('GET', 'POST'))
+@app.route('/index/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         type_connexion = request.form['type']

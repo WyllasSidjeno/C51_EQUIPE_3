@@ -30,9 +30,9 @@ window.addEventListener('load', () => {
         new Audio(sound.click).play();
     });
 
-    type_connexion_btn.addEventListener('click', () => {
-        document.querySelector('form').submit();
-    });
+    // type_connexion_btn.addEventListener('click', () => {
+    //     document.querySelector('form').submit();
+    // });
 
     // SON 
     // let element = document.querySelectorAll(".text");
