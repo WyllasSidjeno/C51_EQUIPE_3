@@ -32,7 +32,7 @@ export class Entite {
             console.log(this.x)
         }
         if (move == 87) {
-            this.y += 2
+            this.y -= 2
             console.log(this.y)
         }
         if (move == 32) {
@@ -42,8 +42,8 @@ export class Entite {
             console.log("defense")
         }
         
-        this.perso.style.top = this.y
-        this.perso.style.left = this.x
+        this.perso.style.top = this.y + "px"
+        this.perso.style.left = this.x + "px"
 
 
     }
