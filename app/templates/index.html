@@ -4,11 +4,30 @@
     <title>{% block titre %} Accueil {% endblock %}</title>
     {% block classe %} index {% endblock %}
     <h1 class="titre text">Run Like Hell</h1>
+
+
+    <div id="message-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <input type="hidden" class="flash-messages">
+                {% for category, message in messages %}
+                    <input type="hidden" class="category" value="{{ category }}">
+                    <input type="hidden" class="message" value="{{ message }}">
+                    <script>
+                        if (document.querySelector('.category').value == 'success')
+                            localStorage.setItem('state', 'success');
+                        else
+                            localStorage.setItem('state', 'error');
+                    </script>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     
-    <div class="login-box">
-        <h2 id="type-connexion"></h2>
-        <form method="post">
-            <input type="hidden" name="type" class="type-connexion" value="">
+    <div class="inscription-box login-box">
+        <h2>Inscription</h2>
+        <form action="/index/" method="post">
+            <input type="hidden" name="type" value="inscription">
             <div class="user-box">
                 <input type="text" name="username" required />
                 <label>Nom d'utilisateur</label>
@@ -28,7 +47,29 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                <input type="submit" id="type-connexion-btn"></input>
+                <input type="submit" value="Inscription" class="btn-connexion"></input>
+            </div>
+        </form>
+    </div>
+
+    <div class="connexion-box login-box">
+        <h2>Connexion</h2>
+        <form action="/index/" method="post">
+            <input type="hidden" name="type" value="connexion">
+            <div class="user-box">
+                <input type="text" name="username" required />
+                <label>Nom d'utilisateur</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required />
+                <label>Mot de passe</label>
+            </div>
+            <div class="send-form">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <input type="submit" value="Connexion" class="btn-connexion"></input>
             </div>
         </form>
     </div>

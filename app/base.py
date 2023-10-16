@@ -1,12 +1,12 @@
 import hashlib
 import os
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 
 from DAO.UserDAO import UserDAO
 
 app = Flask(__name__)
-
+app.secret_key = 'key'
 @app.route('/')
 @app.route('/index/', methods=['GET', 'POST'])
 def index():
@@ -14,36 +14,31 @@ def index():
         type_connexion = request.form['type']
         username = request.form['username']
         password = request.form['password']
-        print(type_connexion, username, password)
         if type_connexion == 'connexion':
             user = UserDAO().get_user_with_password(username)
-            print(user)
             if user is None:
-                print('utilisateur non reconnu')
+                flash('Utilisateur non reconnu', 'error')
             elif user['username'] == username:
                 salt = user['salt']
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 if hashed_password == user['hash']:
-                    print('connexion reussie')
+                    flash('Connexion réussie', 'success')
                     return redirect('/')
                 else:
-                    print('mot de passe incorrect')
+                    flash('Mot de passe incorrect', 'error')
 
         elif type_connexion == 'inscription':
             confirm_password = request.form['confirm_password']
-            print(type_connexion, username, password, confirm_password)
             if password != confirm_password:
-                print('les mots de passe ne correspondent pas')
+                flash('Les mots de passe ne correspondent pas', 'error')
             else:
-                print('inscription reussie')
                 salt = os.urandom(16)
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 UserDAO().add_user(username, hashed_password, salt)
+                flash('Inscription réussie', 'success')
                 return redirect('/')
-        else:
-            redirect('/')
-    return render_template('index.html')
 
+    return render_template('index.html')
 
 @app.route('/jeu/', methods=['GET', 'POST'])
 def jeu():

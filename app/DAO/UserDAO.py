@@ -24,7 +24,7 @@ class UserDAO(SqliteDAO):
         )
         args.append((password, salt))
 
-        self.execute_scripts(script, args)
+        return self.execute_scripts(script, args)
 
     def get_user_with_password(self, user):
         script = self.get_action_script(self.ActionType.GET_USER.name+".sql")
