@@ -4,9 +4,7 @@ let spriteList = [];
 // let rightArrowOn = false;
 
 window.addEventListener("load", () => {//gestionnaire d'événements qui s'exécute lorsque la page web est entièrement chargée (l'événement "load"). À ce moment-là, il crée une instance de la classe Skeleton et l'ajoute au tableau spriteList.
-	spriteList.push(new Skeleton());
-
-	
+	spriteList.push(new Perso());
 
 	tick();
 });
