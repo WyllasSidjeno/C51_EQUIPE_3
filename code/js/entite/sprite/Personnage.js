@@ -50,7 +50,7 @@ export class Personnage extends Entite {
             console.log("defense")
         }
         
-        this.node.style.top = this.y + "px"
-        this.node.style.left = this.x + "px"
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        this.tiledImage.tick(this.x, this.y);
     }
 }
