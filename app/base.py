@@ -4,6 +4,7 @@ import os
 from flask import Flask, render_template, request, redirect, flash
 
 from DAO.UserDAO import UserDAO
+from DAO.CommentDAO import CommentDAO
 
 app = Flask(__name__)
 app.secret_key = 'key'
@@ -22,7 +23,7 @@ def index():
                 salt = user['salt']
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 if hashed_password == user['hash']:
-                    flash('Connexion réussie', 'success')
+                    flash(f'Connexion réussie pour { username }', 'success')
                     return redirect('/')
                 else:
                     flash('Mot de passe incorrect', 'error')
@@ -35,7 +36,7 @@ def index():
                 salt = os.urandom(16)
                 hashed_password = hashlib.sha256(salt + password.encode('utf-8')).hexdigest()
                 UserDAO().add_user(username, hashed_password, salt)
-                flash('Inscription réussie', 'success')
+                flash(f'Inscription réussie pour { username }', 'success')
                 return redirect('/')
 
     return render_template('index.html')
@@ -45,9 +46,15 @@ def jeu():
     return render_template('jeu.html')
 
 
-@app.route('/commentaires/')
+@app.route('/commentaires/', methods=['GET', 'POST'])
 def commentaires():
-    return render_template('commentaires.html')  # TODO: Récupérer les commentaires de la base de donnees
+    if request.method == 'POST':
+        commentaire = request.form['comment']
+        username = request.form['username-comment']
+        CommentDAO().add_comment(username, commentaire)
+        flash(f'Commentaire ajouté', 'success')
+        print("success")
+    return render_template('commentaires.html')
 
 
 @app.route('/apropos/')

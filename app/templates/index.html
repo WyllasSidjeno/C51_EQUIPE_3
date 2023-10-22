@@ -14,8 +14,10 @@
                     <input type="hidden" class="category" value="{{ category }}">
                     <input type="hidden" class="message" value="{{ message }}">
                     <script>
-                        if (document.querySelector('.category').value == 'success')
+                        if (document.querySelector('.category').value === 'success') {
                             localStorage.setItem('state', 'success');
+                            localStorage.setItem('username', document.querySelector('.message').value.split(' ')[3]);
+                        }
                         else
                             localStorage.setItem('state', 'error');
                     </script>
@@ -29,7 +31,7 @@
         <form action="/index/" method="post">
             <input type="hidden" name="type" value="inscription">
             <div class="user-box">
-                <input type="text" name="username" required />
+                <input type="text" name="username" id="username" required />
                 <label>Nom d'utilisateur</label>
             </div>
             <div class="user-box">
@@ -57,7 +59,7 @@
         <form action="/index/" method="post">
             <input type="hidden" name="type" value="connexion">
             <div class="user-box">
-                <input type="text" name="username" required />
+                <input type="text" name="username" id="username" required />
                 <label>Nom d'utilisateur</label>
             </div>
             <div class="user-box">

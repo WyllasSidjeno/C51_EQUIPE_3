@@ -67,3 +67,45 @@
     0% { color: #d6d6d6; }
     100% { color: #474747; }
 }
+
+.answer {
+    border:1px solid #ddd;
+	width:700px;
+	padding:5px;
+	margin-bottom:10px;
+    position: absolute;
+    left: 75%;
+    top: 85%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 140, 0, 0.4);
+}
+
+.answer .comment-input {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.comment-input {
+    width: 95%;
+    height: 40px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.save-btn {
+    margin-top:10px;
+    left: 50%;
+    transform: translate(40%);
+}
+
+.save {
+    width: 100px;
+    height: 30px;
+    background: black;
+    border: 5px indianred;
+    font: 1.5em "Magic School two", sans-serif;
+    color: white;
+}
