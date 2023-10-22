@@ -14,15 +14,12 @@ window.addEventListener('load', () => {
     page_inscription.style.display = 'none';
 
     btn_connexion.addEventListener('click', () => {
-        page_connexion.style.display = 'block';
-        page_inscription.style.display = 'none';
-
+        closeFrame(page_connexion, page_inscription);
         new Audio(sound.click).play();
     });
 
     btn_inscription.addEventListener('click', () => {
-        page_inscription.style.display = 'block';
-        page_connexion.style.display = 'none';
+        closeFrame(page_inscription, page_connexion);
 
         new Audio(sound.click).play();
     });
@@ -43,6 +40,21 @@ window.addEventListener('load', () => {
 
         new Audio(sound.click).play();
     });
+
+    const closeFrame = (mainFrame, frame) => {
+        if (frame.style.display === 'block') {
+            toggleFrame(frame);
+        }
+        toggleFrame(mainFrame);
+    }
+
+    const toggleFrame = (frame) => {
+        if (frame.style.display === 'none') {
+            frame.style.display = 'block';
+        } else {
+            frame.style.display = 'none';
+        }
+    }
 
     let menu_music = new Audio(sound.menu);
     menu_music.loop = true;
