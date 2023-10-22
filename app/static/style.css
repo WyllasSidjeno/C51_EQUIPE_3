@@ -70,14 +70,12 @@
 
 .answer {
     border:1px solid #ddd;
-	width:700px;
+	width: 99%;
 	padding:5px;
-	margin-bottom:10px;
     position: absolute;
-    left: 75%;
-    top: 85%;
-    transform: translate(-50%, -50%);
+    bottom: 0;
     background-color: rgba(255, 140, 0, 0.4);
+    box-sizing: border-box;
 }
 
 .answer .comment-input {
@@ -87,7 +85,7 @@
 }
 
 .comment-input {
-    width: 95%;
+    width: 92%;
     height: 40px;
     padding: 10px;
     margin: 5px 0;
@@ -96,16 +94,25 @@
 }
 
 .save-btn {
+    position: relative;
+    width: 100px;
     margin-top:10px;
-    left: 50%;
-    transform: translate(40%);
+    left: 97%;
+    bottom: 10%;
+    transform: translate(-50%, -220%);
 }
 
 .save {
-    width: 100px;
+    width: 70px;
     height: 30px;
     background: black;
     border: 5px indianred;
     font: 1.5em "Magic School two", sans-serif;
     color: white;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
