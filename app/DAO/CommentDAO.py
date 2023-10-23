@@ -7,8 +7,12 @@ class CommentDAO(SqliteDAO):
 
     def add_comment(self, username, message):
         script = self.get_action_script("add_comment.sql")
-        self.execute_script(script, message, username)
+        return self.execute_script(script, message, username)
 
     def add_comment_comment(self, username, comment_id, message):
         script = self.get_action_script("add_comment_answer.sql")
-        self.execute_script(script, comment_id, message, username)
+        return self.execute_script(script, comment_id, message, username)
+
+    def get_comments(self):
+        script = self.get_action_script("get_comments.sql")
+        return self.execute_script(script)
