@@ -131,7 +131,7 @@
     padding: 10px 10px 10px 10px;
     left: 50%;
     top: 30%;
-    transform: translate(-50%, 60%);
+    transform: translate(-50%, 80%);
     border: 5px solid indianred;
     color: pink;
     font: 1.2em sans-serif;
@@ -171,4 +171,25 @@
 
 .email a {
     color: plum;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #333;
+    border: 5px solid #333;
+    border-radius: 30%;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 95%;
+    margin-top: 10px;
+}
+
+#volumeOn {
+    position: absolute;
+    top:11.5%;
+    left: 94.5%;
 }
