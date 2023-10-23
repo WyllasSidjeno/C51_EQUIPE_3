@@ -5,6 +5,7 @@ export class TiledImage {
 
 			if (typeof nodeOrId == "string") {
 				this.node = document.getElementById(nodeOrId);
+				console.log(this.node)
 			}
 
 			this.node.style.position = "absolute";
