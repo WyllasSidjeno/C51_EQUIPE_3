@@ -2,7 +2,8 @@
 {% block contenu %}
     <script src="{{ url_for('static', filename='page-contact.js')}}"></script>
     <title>{% block titre %} Contact {% endblock %}</title>
-
+    {% block classe %} contact {% endblock %}
+    
     <h1 class="titre text">Contact</h1>
     <div class="contacter">
         <p><b>Run Like Hell</b> est un jeu de plateforme de type metroidvania en 2D développé par l'équipe 3 du cours de 

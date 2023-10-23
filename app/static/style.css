@@ -38,7 +38,7 @@
 }
 
 .commentaires {
-    background-image: url("../static/commentaires-background.png");
+    background-image: url("../static/commentaires-background.gif");
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -46,6 +46,13 @@
 
 .apropos {
     background-image: url("../static/apropos-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.contact {
+    background-image: url("../static/contacts-background.png");
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -139,7 +146,7 @@
     padding: 10px 10px 10px 10px;
     left: 50%;
     top: 30%;
-    transform: translate(-50%, 100%);
+    transform: translate(-50%, 220%);
     border: 5px solid indianred;
     color: pink;
     font: 1.2em sans-serif;
