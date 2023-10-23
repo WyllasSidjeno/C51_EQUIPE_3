@@ -1,5 +1,6 @@
 window.addEventListener('load', () => {
     let sound = new Sound();
+    let menu_music = new Audio(sound.menu);
 
     let btn_connexion = document.querySelector('#connexion');
     let btn_inscription = document.querySelector('#inscription');
@@ -15,8 +16,8 @@ window.addEventListener('load', () => {
     page_connexion.style.display = 'none';
     page_inscription.style.display = 'none';
 
-    btn_volume.style.display = 'block';
-    btn_muted.style.display = 'none';
+    btn_volume.style.display = 'none';
+    btn_muted.style.display = 'block';
 
     btn_connexion.addEventListener('click', () => {
         closeFrame(page_connexion, page_inscription);
@@ -62,19 +63,19 @@ window.addEventListener('load', () => {
     }
 
     btn_muted.addEventListener('click', () => {
-        backgroundMusic(sound, true);
+        backgroundMusic(menu_music, true);
         closeFrame(btn_volume, btn_muted);
     })
     
     btn_volume.addEventListener('click', () => {
-        backgroundMusic(sound, false);
+        backgroundMusic(menu_music ,false);
         closeFrame(btn_muted, btn_volume);
     })
 });
 
-const backgroundMusic = (sound, state) =>  {
-    let menu_music = new Audio(sound.menu);
-    menu_music.loop = true;
-    if(state) menu_music.play();
-    else menu_music.muted = !state;
+
+const backgroundMusic = (son, state) =>  {
+    son.loop = true;
+    if(state) son.play();
+    else son.pause();
 }
