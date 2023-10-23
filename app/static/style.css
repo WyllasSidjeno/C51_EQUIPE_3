@@ -116,3 +116,52 @@
     display: flex;
     justify-content: center;
 }
+
+.information {
+    position: relative;
+    width: 95%;
+    height: 90%;
+    padding: 10px 10px 10px 10px;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, 40%);
+    border: 5px solid indianred;
+    color: pink;
+    font: 1.2em sans-serif;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: justify;
+}
+
+.contacter {
+    position: relative;
+    width: 95%;
+    height: 90%;
+    padding: 10px 10px 10px 10px;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, 100%);
+    border: 5px solid indianred;
+    color: pink;
+    font: 1.2em sans-serif;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: justify;
+}
+
+.email {
+    display: inline-block; /* Use flexbox for a horizontal layout */
+    align-items: center; /* Align items vertically in the middle */
+    margin-right: 130px; /* Adjust the value to control the spacing between email elements */
+}
+
+.email-icon {
+    background-image: url("../static/email.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; /* Adjust the value to control the spacing between the image and the email link */
+}
+
+.email a {
+    color: plum;
+}
