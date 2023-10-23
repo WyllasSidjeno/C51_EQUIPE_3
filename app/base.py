@@ -53,7 +53,6 @@ def commentaires():
         username = request.form['username-comment']
         CommentDAO().add_comment(username, commentaire)
         flash(f'Commentaire ajouté', 'success')
-        print("success")
     return render_template('commentaires.html')
 
 
