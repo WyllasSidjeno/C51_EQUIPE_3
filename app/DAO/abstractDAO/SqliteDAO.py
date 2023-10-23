@@ -25,10 +25,9 @@ class SqliteDAO(ConnectionManager):
             if args:
                 cursor.execute(script, args)
             else:
-                print(script)
                 cursor.executescript(script)
-            result = cursor.fetchone()
             self._conn.commit()
+            result = cursor.fetchone()
         except sqlite3.Error as e:
             print("An SQL error occurred:")
             print(e)

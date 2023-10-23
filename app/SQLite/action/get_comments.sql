@@ -1,4 +1,6 @@
-SELECT c.id, u.username, c.date_creation, c.message, GROUP_CONCAT(rc.message) AS rc_messages
-FROM commentaire c, User u
-JOIN reponse_commentaire rc ON c.ID = rc.commentaire_id
-GROUP BY c.id, c.user_id, c.date_creation, c.message;
+SELECT c.id, u.username, c.date_creation, c.message,
+  COALESCE(GROUP_CONCAT(rc.message), 'Nulle') AS rc_messages
+FROM commentaire c
+JOIN User u ON c.user_id = u.id
+LEFT JOIN reponse_commentaire rc ON c.id = rc.commentaire_id
+GROUP BY c.id, u.username, c.date_creation, c.message;
