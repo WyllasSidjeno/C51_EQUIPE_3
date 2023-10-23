@@ -1,0 +1,195 @@
+@import url('https://fonts.cdnfonts.com/css/magic-school-one');
+
+.text {
+    font-family: 'Magic School two', sans-serif;
+}
+
+.topnav {
+    width: 100%;
+    box-sizing: border-box;
+    background: #333;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 0px 50px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.index {
+    background-image: url("../static/index-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.commentaires {
+    background-image: url("../static/commentaires-background.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.apropos {
+    background-image: url("../static/apropos-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.contact {
+    background-image: url("../static/contacts-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.titre {
+    font-size: 150px;
+    text-align: center;
+    color: #ffffff;
+    animation: titre 2s ease-in-out infinite alternate;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default;
+}
+
+@keyframes titre {
+    0% { color: #d6d6d6; }
+    100% { color: #474747; }
+}
+
+.answer {
+    border:1px solid #ddd;
+	width: 99%;
+	padding:5px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 140, 0, 0.4);
+    box-sizing: border-box;
+}
+
+.answer .comment-input {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.comment-input {
+    width: 92%;
+    height: 40px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.save-btn {
+    position: relative;
+    width: 100px;
+    margin-top:10px;
+    left: 97%;
+    bottom: 10%;
+    transform: translate(-50%, -220%);
+}
+
+.save {
+    width: 70px;
+    height: 30px;
+    background: black;
+    border: 5px indianred;
+    font: 1.5em "Magic School two", sans-serif;
+    color: white;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.information {
+    position: relative;
+    width: 95%;
+    height: 90%;
+    padding: 10px 10px 10px 10px;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, 80%);
+    border: 5px solid indianred;
+    color: pink;
+    font: 1.2em sans-serif;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: justify;
+}
+
+.contacter {
+    position: relative;
+    width: 95%;
+    height: 90%;
+    padding: 10px 10px 10px 10px;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, 220%);
+    border: 5px solid indianred;
+    color: pink;
+    font: 1.2em sans-serif;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: justify;
+}
+
+.email {
+    display: inline-block;
+    align-items: center;
+    margin-right: 130px;
+}
+
+.email-icon {
+    background-image: url("../static/email.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.email a {
+    color: plum;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #333;
+    border: 5px solid #333;
+    border-radius: 30%;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 95%;
+    margin-top: 10px;
+}
+
+#volumeOn {
+    position: absolute;
+    top:11.5%;
+    left: 94.5%;
+}
