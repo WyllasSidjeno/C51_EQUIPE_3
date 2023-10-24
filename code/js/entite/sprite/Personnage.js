@@ -7,9 +7,11 @@ export class Personnage extends Entite {
     constructor(){
         super()
 
+        // personnage state
         this.idle = true;
         this.running = false
         this.jumping = false
+        this.falling = false
 
 
         // Sprite settings
@@ -71,8 +73,9 @@ export class Personnage extends Entite {
             }
             this.hero.setFlipped(this.orientation)
             this.y -= 2
+        } else if (move == 32) {
+            console.log("attck")
         }
-
         else {
             
             this.hero = new TiledImage("images/Sprite/Body/Ivory/Idle.png", 3, 4, 100, true, 1.0, this.node);
