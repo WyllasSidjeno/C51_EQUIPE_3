@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
    mute.style.display = 'none';
    volume.style.display = 'none';
 
-   fetch("static/map1.json")
+   fetch('/static/map1.json')
     .then(response => response.json())
     .then(data => {
        console.log(data);
