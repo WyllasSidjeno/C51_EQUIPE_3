@@ -6,4 +6,11 @@ window.addEventListener('load', () => {
    topnav.style.display = 'none';
    mute.style.display = 'none';
    volume.style.display = 'none';
+
+   fetch("map1.json")
+    .then(response => response.json())
+    .then(data => {
+
+    })
+    .catch(error => console.log(error));
 });
