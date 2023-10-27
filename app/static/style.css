@@ -187,3 +187,22 @@
     left: 95%;
     margin-top: 10px;
 }
+
+.leave {
+    background-color: red;
+    border: 5px solid red;
+    padding: 10px 10px 10px 10px;
+    position: fixed;
+    left: 94%;
+    top: 2%;
+    border-radius: 30px;
+    color: white;
+    font: 1.2em sans-serif;
+    text-decoration: none;
+}
+.leave:hover {
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    transition: background-color 1s ease-in-out;
+}

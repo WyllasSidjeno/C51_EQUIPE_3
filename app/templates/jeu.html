@@ -3,5 +3,8 @@
     <script src="{{ url_for('static', filename='page-jeu.js')}}"></script>
     <title>{% block titre %} Jeu {% endblock %}</title>
 
+    <div class="leave-container">
+        <a href="{{ url_for('index') }}" class="leave">Quitter</a>
+    </div>
 
 {% endblock %}
