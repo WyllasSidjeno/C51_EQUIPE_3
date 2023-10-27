@@ -7,10 +7,10 @@ window.addEventListener('load', () => {
    mute.style.display = 'none';
    volume.style.display = 'none';
 
-   fetch("map1.json")
+   fetch("static/map1.json")
     .then(response => response.json())
     .then(data => {
        console.log(data);
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log("JSON parsing error" + error));
 });

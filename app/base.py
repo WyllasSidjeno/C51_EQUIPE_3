@@ -1,7 +1,7 @@
 import hashlib
 import os
 
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, send_file
 
 from DAO.UserDAO import UserDAO
 from DAO.CommentDAO import CommentDAO
