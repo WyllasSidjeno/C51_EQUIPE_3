@@ -11,6 +11,7 @@ app.secret_key = 'key'
 @app.route('/')
 @app.route('/index/', methods=['GET', 'POST'])
 def index():
+    # TODO: si l'utilisateur existe 
     if request.method == 'POST':
         type_connexion = request.form['type']
         username = request.form['username']
@@ -53,7 +54,15 @@ def commentaires():
         username = request.form['username-comment']
         CommentDAO().add_comment(username, commentaire)
         flash(f'Commentaire ajouté', 'success')
-    return render_template('commentaires.html')
+        # TODO: if get logout
+    
+    return render_template('commentaires.html', comments= [{
+            "id": 1,
+            "username": "username",
+            "date": "date",
+            "message": "message",
+        }])
+        
 
 
 @app.route('/apropos/')
