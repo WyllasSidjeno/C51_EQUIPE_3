@@ -16,56 +16,53 @@ window.addEventListener('load', () => {
     .catch(error => console.log("JSON parsing error: " + error));
 });
 
-const draw_level = (data, level) => {
-    // let level = data.levels[0];
-    // let wallImg = level.layerInstances.find(level => level.__identifier === "Walls");
-    // let wallDecoImg = level.layerInstances.find(level => level.__identifier === "WallDeco");
-    // let wood = level.layerInstances.find(level => level.__identifier === "Wood");
-    // let envImg = level.layerInstances.find(level => level.__identifier === "Environment");
-    // let floorImg = level.layerInstances.find(level => level.__identifier === "Floor");
-    // let wallSidesImg = level.layerInstances.find(level => level.__identifier === "WallSides");
-
-    
-
-
-    let lvl = 'Level_' + level
-
-    let ctr = ['Walls', 'WallDeco', 'Wood', 'Environment', 'Floor', 'WallSides', 'BigLadders', 'SmallLaddersAndDoors', 'WallsFar']
+const draw_level = (data, level_gotten) => {
+    let lvl = 'Level_' + level_gotten;
+    let ctr = ['WallsFar','Walls', 'WallDeco', 'Wood', 'Environment', 'Floor', 'WallSides', 'BigLadders', 'SmallLaddersAndDoors']
 
     data['levels'].forEach(level => {
-        if (level['identifier'] == lvl){
-            ctr = level['layerInstances'].length;
+        if (level['identifier'] === lvl){
 
             let tab = [];
             level['layerInstances'].forEach(layer => {
-                tab.push(layer['__identifier']);
+                tab.push(layer);
             });
+            console.log(tab);
+
+            // put the elements in the right order
+            let tabOrdre = [];
+            for (let i = 0; i < ctr.length; i++) {
+                for (let j = 0; j < tab.length; j++) {
+                    if (ctr[i] === tab[j]['__identifier']) {
+                        let temp = tab[j];
+                        tabOrdre.push(temp);
+                    }
+                }
+            }
+            console.log(tabOrdre);
 
             level['layerInstances'].forEach(layer => {
-                tab.forEach(element => {
-                    let cpt = 0;
-                    if (element[cpt] in ctr) {
+                tabOrdre.forEach(element => {
 
-                        layer.gridTiles.forEach(tile => {
-                            let img = new Image();
-                            img.src = layer.__tilesetRelPath;
-                            img.onload = () => {
-                                let canvas = document.querySelector('.canvas');
-                                let ctx = canvas.getContext("2d");
-                                ctx.drawImage(img,
-                                    tile.src[0],
-                                    tile.src[1],
-                                    layer.__gridSize,
-                                    layer.__gridSize,
-                                    tile.px[0],
-                                    tile.px[1],
-                                    layer.__gridSize,
-                                    layer.__gridSize
-                                );
-                            }
-                        });
-                        cpt++;
-                    }
+                    element.gridTiles.forEach(tile => {
+                        let img = new Image();
+                        img.src = layer.__tilesetRelPath;
+                        img.onload = () => {
+                            let canvas = document.querySelector('.canvas');
+                            let ctx = canvas.getContext("2d");
+                            ctx.drawImage(img,
+                                tile.src[0],
+                                tile.src[1],
+                                layer.__gridSize,
+                                layer.__gridSize,
+                                tile.px[0],
+                                tile.px[1],
+                                layer.__gridSize,
+                                layer.__gridSize
+                            );
+                        }
+                    });
+
                 });
             })
         }
