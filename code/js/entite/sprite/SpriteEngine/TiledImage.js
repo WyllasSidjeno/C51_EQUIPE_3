@@ -52,8 +52,8 @@ export class TiledImage {
 	setFullImageLoop (count, fullImageCallback = null) {
 		this.fullImageCallback = fullImageCallback;
 		this.imageCurrentCol = 0;
-		this.imageCurrentRow = 0;
-		this.fullImageIdx = 0;
+		this.imageCurrentRow = 16;
+		this.fullImageIdx = 15;
 		this.fullImageCount = count;
 		this.stopped = false;
 	}
