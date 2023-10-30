@@ -3,9 +3,10 @@
     <script src="{{ url_for('static', filename='page-commentaires.js')}}"></script>
     <title>{% block titre %} Commentaires {% endblock %}</title>
     {% block classe %} commentaires {% endblock %}
-    <div>
+    <div class="comment-output">
         {% for comment in  comments %}
-        <div class="comment-output"><b>{{comment['username']}}</b> {{comment['date']}}</br>{{ comment['message']}}</br></div>
+        <div class="comment-output"><b>{{comment['username']}}</b> {{comment['date']}}</br>{{ comment['message']}}<button class="edit-comment"></button>
+        </div>
         {% endfor %}
     </div>
 
