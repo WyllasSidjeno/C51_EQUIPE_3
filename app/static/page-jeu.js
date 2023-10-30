@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
 
 const draw_level = (data, level_gotten) => {
     let lvl = 'Level_' + level_gotten;
-    let ctr = ['WallsFar','Walls', 'WallDeco', 'Wood', 'Environment', 'Floor', 'WallSides', 'BigLadders', 'SmallLaddersAndDoors']
+    let ctr = ['Walls','WallsFar', 'WallDeco', 'Wood', 'Environment', 'Floor', 'WallSides', 'BigLadders', 'SmallLaddersAndDoors']
 
     data['levels'].forEach(level => {
         if (level['identifier'] === lvl){
@@ -27,7 +27,6 @@ const draw_level = (data, level_gotten) => {
             level['layerInstances'].forEach(layer => {
                 tab.push(layer);
             });
-            console.log(tab);
 
             // put the elements in the right order
             let tabOrdre = [];
@@ -39,30 +38,27 @@ const draw_level = (data, level_gotten) => {
                     }
                 }
             }
-            console.log(tabOrdre);
 
             level['layerInstances'].forEach(layer => {
                 tabOrdre.forEach(element => {
-
                     element.gridTiles.forEach(tile => {
                         let img = new Image();
-                        img.src = layer.__tilesetRelPath;
+                        img.src = element.__tilesetRelPath;
                         img.onload = () => {
                             let canvas = document.querySelector('.canvas');
                             let ctx = canvas.getContext("2d");
                             ctx.drawImage(img,
                                 tile.src[0],
                                 tile.src[1],
-                                layer.__gridSize,
-                                layer.__gridSize,
+                                element.__gridSize,
+                                element.__gridSize,
                                 tile.px[0],
                                 tile.px[1],
-                                layer.__gridSize,
-                                layer.__gridSize
+                                element.__gridSize,
+                                element.__gridSize
                             );
                         }
                     });
-
                 });
             })
         }
