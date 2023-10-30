@@ -49,6 +49,12 @@ export class Personnage extends Entite {
     tick(){
 
         if (move == 65 || move == 68){
+            this.hero = new TiledImage("images/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
+		    this.hero.changeRow(11)
+            this.hero.changeMinMaxInterval(0, 8)
+            this.hero.addImage('images/Sprite/torso-base.png')
+            this.hero.addImage('images/Sprite/leg-base.png')
+            this.hero.addImage('images/Sprite/dagger.png')
             if (move == 68) {
                 this.hero.changeRow(11)
                 this.x +=1
@@ -61,19 +67,24 @@ export class Personnage extends Entite {
             }
             // this.hero.setFlipped(this.orientation)
         } else if (move == 87) {
-            this.hero.setFlipped(this.orientation)
+            this.jumping=true
             this.y -= 2
         } else if (move == 32) {
             if (this.orientation) {
-                this.hero.changeRow(13)
+                this.hero.changeRow(15)
             } else {
                 this.hero.changeRow(13)
             }
-            
             this.hero.changeMinMaxInterval(0, 5)
             this.attack = true
         }
         else {
+            this.hero = new TiledImage("images/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
+		    this.hero.changeRow(11)
+            this.hero.changeMinMaxInterval(0, 8)
+            this.hero.addImage('images/Sprite/torso-base.png')
+            this.hero.addImage('images/Sprite/leg-base.png')
+            this.hero.addImage('images/Sprite/dagger.png')
             if (this.attack && this.atkCount < 50) {
                 this.atkCount += 1
             } else {
