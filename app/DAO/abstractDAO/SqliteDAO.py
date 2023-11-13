@@ -16,44 +16,6 @@ class SqliteDAO(ConnectionManager):
         super().__init__()
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-
-    def execute_script(self, script: str, *args):
-        result = None
-        self.connect()
-        try:
-            cursor = self._conn.cursor()
-            if args:
-                cursor.execute(script, args)
-            else:
-                cursor.execute(script)
-            self._conn.commit()
-            result = cursor.fetchone()
-        except sqlite3.Error as e:
-            raise e
-        finally:
-            self.close()
-        return dict(zip(result.keys(), result)) if result else None
-
-    def execute_scripts(self, scripts: list[str], arguments: list[tuple] = None):
-        self.connect()
-        results = []
-        try:
-            cursor = self._conn.cursor()
-            for i, script in enumerate(scripts):
-                if arguments and i < len(arguments):
-                    cursor.execute(script, arguments[i])
-                else:
-                    cursor.execute(script)
-                value = cursor.fetchone()
-                if value:
-                    results.append(dict(zip(value.keys(), value)))
-            self._conn.commit()
-        except sqlite3.Error as e:
-            raise e
-        finally:
-            self.close()
-        return results
-
     def get_scripts(self, script_type):
         scripts = []
         for file in os.listdir(self.path + script_type.name):
