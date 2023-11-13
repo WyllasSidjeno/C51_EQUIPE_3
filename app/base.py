@@ -55,13 +55,8 @@ def commentaires():
         CommentDAO().add_comment(username, commentaire)
         flash(f'Commentaire ajouté', 'success')
         # TODO: if get logout
-    
-    return render_template('commentaires.html', comments= [{
-            "id": 1,
-            "username": "username",
-            "date": "date",
-            "message": "message",
-        }])
+    commentaires = CommentDAO().get_comments()
+    return render_template('commentaires.html', comments=commentaires)
         
 
 
