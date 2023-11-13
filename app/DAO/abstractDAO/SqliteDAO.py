@@ -25,12 +25,11 @@ class SqliteDAO(ConnectionManager):
             if args:
                 cursor.execute(script, args)
             else:
-                cursor.executescript(script)
+                cursor.execute(script)
             self._conn.commit()
             result = cursor.fetchone()
         except sqlite3.Error as e:
-            print("An SQL error occurred:")
-            print(e)
+            raise e
         finally:
             self.close()
         return dict(zip(result.keys(), result)) if result else None
@@ -44,15 +43,13 @@ class SqliteDAO(ConnectionManager):
                 if arguments and i < len(arguments):
                     cursor.execute(script, arguments[i])
                 else:
-                    print(script)
-                    cursor.executescript(script)
+                    cursor.execute(script)
                 value = cursor.fetchone()
                 if value:
                     results.append(dict(zip(value.keys(), value)))
             self._conn.commit()
         except sqlite3.Error as e:
-            print("An SQL error occurred:")
-            print(e)
+            raise e
         finally:
             self.close()
         return results
