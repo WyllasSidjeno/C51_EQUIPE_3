@@ -49,24 +49,20 @@ export class Personnage extends Entite {
     tick(){
 
         if (move == 65 || move == 68){
-            this.hero = new TiledImage("images/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
-		    this.hero.changeRow(11)
-            this.hero.changeMinMaxInterval(0, 8)
-            this.hero.addImage('images/Sprite/torso-base.png')
-            this.hero.addImage('images/Sprite/leg-base.png')
-            this.hero.addImage('images/Sprite/dagger.png')
             if (move == 68) {
                 this.hero.changeRow(11)
                 this.x +=1
                 this.orientation = true 
             }
             if (move == 65) {
+                this.orientation = false 
                 this.hero.changeRow(9)
                 this.x -=1
-                this.orientation = false 
+                
             }
             // this.hero.setFlipped(this.orientation)
-        } else if (move == 87) {
+        } 
+        else if (move == 87) {
             this.jumping=true
             this.y -= 2
         } else if (move == 32) {
