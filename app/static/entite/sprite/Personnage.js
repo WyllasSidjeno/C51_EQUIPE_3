@@ -1,6 +1,6 @@
-import { Entite } from "../Entite.js";
-import {TiledImage} from "./SpriteEngine/TiledImage.js"
-import {move} from "./move/deplacement.js"
+import { Entite } from "/static/entite/Entite.js";
+import {TiledImage} from "/static/entite/sprite/SpriteEngine/TiledImage.js"
+import {move} from "/static/entite/sprite/move/deplacement.js"
 
 export class Personnage extends Entite {
 
@@ -24,20 +24,21 @@ export class Personnage extends Entite {
 		this.scale = 2.0;// Échelle à laquelle l'image de sprite doit être affichée
 
 		// this.node = document.createElement("div");//cree un div
+		this.node = document.querySelector('.game-container');//cree un div
+        // console.log(this.node)
         // this.node.id = "perso"
-        // this.node = document.querySelector('#game')
 		// document.querySelector("#game").append(this.node);//ajoute le div dans le noeud		
 
         // Def spritesheet
-        this.hero = new TiledImage("images/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
+        this.hero = new TiledImage("/static/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
 		this.hero.changeRow(11)
         this.hero.changeMinMaxInterval(0, 8)
-        this.hero.addImage('images/Sprite/torso-base.png')
-        this.hero.addImage('images/Sprite/leg-base.png')
-        this.hero.addImage('images/Sprite/dagger.png')
+        this.hero.addImage('/static/Sprite/torso-base.png')
+        this.hero.addImage('/static/Sprite/leg-base.png')
+        this.hero.addImage('/static/Sprite/dagger.png')
 
 		this.x = 300;//position de depart en x
-		this.y = 400;//position de depart en y
+		this.y = 160;//position de depart en y
 
         this.ground = 400;
 		this.speed = 1;
@@ -76,12 +77,12 @@ export class Personnage extends Entite {
             this.attack = true
         }
         else {
-            this.hero = new TiledImage("images/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
+            this.hero = new TiledImage("/static/Sprite/base.png", this.columnCount, this.rowCount, this.refreshDelay, this.loopColumns, this.scale, this.node);
 		    this.hero.changeRow(11)
             this.hero.changeMinMaxInterval(0, 8)
-            this.hero.addImage('images/Sprite/torso-base.png')
-            this.hero.addImage('images/Sprite/leg-base.png')
-            this.hero.addImage('images/Sprite/dagger.png')
+            this.hero.addImage('/static/Sprite/torso-base.png')
+            this.hero.addImage('/static/Sprite/leg-base.png')
+            this.hero.addImage('/static/Sprite/dagger.png')
             if (this.attack && this.atkCount < 50) {
                 this.atkCount += 1
             } else {
@@ -103,6 +104,6 @@ export class Personnage extends Entite {
         }
                
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        this.hero.tick(this.x, this.y);
+        this.hero.tick(this.x, this.y, );
     }
 }

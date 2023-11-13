@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block contenu %}
-    <script src="{{ url_for('static', filename='page-jeu.js')}}"></script>
+    <script src="{{ url_for('static', filename='page-jeu.js')}}" type='module'></script>
     <script src="{{ url_for('static', filename='map1.json')}}"></script>
+    <script src="{{ url_for('static', filename='index.js')}}"type='module'></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='jeu.css')}}">
     <title>{% block titre %} Jeu {% endblock %}</title>
 
     <div class="leave-container">
@@ -13,6 +15,5 @@
             
         </canvas>
     </div>
-
 
 {% endblock %}

@@ -11,10 +11,10 @@ window.addEventListener('load', () => {
    fetch('/static/map1.json')
     .then(response => response.json())
     .then(data => {
-        draw_level(data, 0);
+        draw_level(data, 0)
     })
     .catch(error => console.log("JSON parsing error: " + error));
-});
+})
 
 const draw_level = (data, level_gotten) => {
     let lvl = 'Level_' + level_gotten;
@@ -62,8 +62,5 @@ const draw_level = (data, level_gotten) => {
                 });
             })
         }
-    });
-
-
-
+    });l
 }

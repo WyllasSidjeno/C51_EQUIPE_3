@@ -160,8 +160,6 @@ export class TiledImage {
 					canvas = this.node.querySelector("canvas");
 				}
 
-
-
 				this.node.style.left = spritePosX + "px";
 				this.node.style.top = spritePosY + "px";
 
@@ -182,10 +180,9 @@ export class TiledImage {
 			this.tickDrawFrameInterval = 0;
 		}
 
-		let actualW = 32;
-		let actualH = 32;
+		let actualW = 128;
+		let actualH = 128;
 
-		
 		for (let i = 0; i < this.imageList.length;i++) {
 			if (this.imageList[i].complete && ctx != null) {
 				let x = Math.floor(spritePosX - actualW/2);
