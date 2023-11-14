@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block contenu %}
+    <script src="{{ url_for('static', filename='page-commentaires.js')}}"></script>
+    <title>{% block titre %} Commentaires {% endblock %}</title>
+    {% block classe %} commentaires {% endblock %}
+
+    <form action="/commentaires/" method="post">
+        <input type="hidden" class="username-comment" name="username-comment">
+        <div class="answer">
+            <strong style="font-size: 24px">Un commentaire? Une suggestion?</strong>
+                <div class="comment">
+                    <textarea class="comment-input" required placeholder="Votre commentaire" name="comment"></textarea>
+                </div>
+                <div class="save-btn">
+                    <button class="save" type="submit">Save</button>
+                </div>
+        </div>
+    </form>
+
+{% endblock %}
