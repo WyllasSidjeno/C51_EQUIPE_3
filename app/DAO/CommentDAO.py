@@ -1,6 +1,7 @@
 from DAO.abstractDAO.SqliteDAO import SqliteDAO
 import sqlite3
 
+
 class CommentDAO(SqliteDAO):
     def __init__(self):
         super().__init__()

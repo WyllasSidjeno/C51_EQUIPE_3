@@ -1,5 +1,4 @@
 import os
-import sqlite3
 from enum import auto, Enum
 
 from DAO.abstractDAO.ConnectionManager import ConnectionManager
@@ -10,7 +9,6 @@ class SqliteDAO(ConnectionManager):
         CREATE = auto()
         DROP = auto()
         ACTION = auto()
-
 
     def __init__(self):
         super().__init__()
