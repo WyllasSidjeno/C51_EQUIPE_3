@@ -1,8 +1,8 @@
 import os
 import sys
 from DAO.TableCreationDAO import TableCreationDao
-from app.DAO.CommentDAO import CommentDAO
-from app.DAO.UserDAO import UserDAO
+from DAO.CommentDAO import CommentDAO
+from DAO.UserDAO import UserDAO
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

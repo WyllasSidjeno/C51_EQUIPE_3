@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% block contenu %}
     <script src="{{ url_for('static', filename='page-jeu.js')}}"></script>
+    <script src="{{ url_for('static', filename='map1.json')}}"></script>
     <title>{% block titre %} Jeu {% endblock %}</title>
 
+    <div class="leave-container">
+        <a href="{{ url_for('index') }}" class="leave">Quitter</a>
+    </div>
+
+    <div class="game-container">
+        <canvas class="canvas">
+            <div id="floor"></div>
+        </canvas>
+    </div>
 
 {% endblock %}
