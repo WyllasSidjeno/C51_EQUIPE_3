@@ -1,6 +1,6 @@
 import map from '/static/map_1_matrix.json' assert { type: 'json' }
 
-const BLOCK_SIZE = 96
+const BLOCK_SIZE = 101
 const TEMPSINTERVALLE = 20;
 const ENTITY_MOVE_X = 1;
 const ENTITY_MOVE_Y = 1;
@@ -12,6 +12,10 @@ const FLECHEHAUT = 38;
 let zoneDeJeu
 let joueur
 let intervalle
+
+let collisionBlock = []
+let collisionDoor = []
+let collisionLadder = []
 
 window.addEventListener('load', () => {
 
