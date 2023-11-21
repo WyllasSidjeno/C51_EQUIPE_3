@@ -1,4 +1,7 @@
+import map from '/static/map_1_matrix.json' assert { type: 'json' }
+
 window.addEventListener('load', () => {
+    
    let topnav = document.querySelector('.topnav');
    let mute = document.querySelector('#muted');
    let volume = document.querySelector('#volumeOn');
@@ -8,12 +11,8 @@ window.addEventListener('load', () => {
    mute.style.display = 'none';
    volume.style.display = 'none';
 
-   fetch('/static/map_1_matrix.json')
-    .then(response => response.json())
-    .then(data => {
-        draw_level(data, 5)
-    })
-    .catch(error => console.log("JSON parsing error: " + error));
+   draw_level(map, 0);
+   
 })
 
 const draw_level = (data, level_gotten) => {
@@ -45,7 +44,7 @@ const draw_level = (data, level_gotten) => {
                         let img = new Image();
                         img.src = element.__tilesetRelPath;
                         img.onload = () => {
-                            let canvas = document.querySelector('.canvas');
+                            let canvas = document.querySelector('#canvas');
                             let ctx = canvas.getContext("2d");
                             ctx.drawImage(img,
                                 tile.src[0],
@@ -62,5 +61,5 @@ const draw_level = (data, level_gotten) => {
                 });
             })
         }
-    });l
+    });
 }
