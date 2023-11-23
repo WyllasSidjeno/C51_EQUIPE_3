@@ -27,7 +27,7 @@ export class LevelGenerator {
         blockList.forEach((row, y) => {
             row.forEach((block, x) => {
                 if (block == 1) {
-                    collisionBlockList.push(new collisionBlock({ position: { x: x, y: y} }))
+                    collisionBlockList.push(new collisionBlock({ position: { x: x * 16, y: y * 16} }))
                 }
             })
         })

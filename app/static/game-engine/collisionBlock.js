@@ -7,6 +7,6 @@ export class collisionBlock {
 
     draw(ctx) {
         ctx.fillStyle = "red"
-        ctx.fillRect(this.position.x * this.width, this.position.y*this.height, this.width, this.height)
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }

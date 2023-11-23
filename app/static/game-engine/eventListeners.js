@@ -18,6 +18,9 @@ window.addEventListener('keydown', (e) => {
 
 window.addEventListener('keyup', (e) => {
     switch (e.key) {
+        case 'w':
+            keys.up = false
+            break;
         case 'a':
             keys.left = false
             break;

@@ -7,8 +7,7 @@ let keys = {
 window.addEventListener('keydown', (e) => {
     switch (e.key) {
         case 'w':
-            if (joueur.velocity.y == 0) joueur.velocity.y = -ENTITY_MOVE_Y * 10
-            
+            keys.up = true
             break;
         case 'a':
             keys.left = true

@@ -28,11 +28,12 @@ window.addEventListener('load', () => {
     let lvlGen = new LevelGenerator(map)
 
     
-    lvlGen.parseLevel2D(0).forEach(e => {
+    collisionBlock = lvlGen.parseLevel2D(0)
+    collisionBlock.forEach(e => {
         e.draw(ctx)
     })
 
-    joueur = new Entite(20, 20)
+    joueur = new Entite(100, 60, {collisionBlock})
     joueur.draw(ctx)
 
     animate()
@@ -45,43 +46,14 @@ const animate = () => {
 
     joueur.velocity.x = 0
     if (keys.left) joueur.velocity.x = -ENTITY_MOVE_X
-    else if (keys.right) joueur.velocity.x = ENTITY_MOVE_X
-    else if (keys.up) joueur.velocity.y = -ENTITY_MOVE_Y
+    if (keys.right) joueur.velocity.x = ENTITY_MOVE_X
+    if (keys.up) {
+        if (joueur.velocity.y === 0) joueur.velocity.y = -25
+        else keys.up = false
+    }
 
 
     joueur.move()
     joueur.draw()
     
 } 
-
-window.addEventListener('keydown', (e) => {
-    switch (e.key) {
-        case 'w':
-            if (joueur.velocity.y == 0) joueur.velocity.y = -ENTITY_MOVE_Y * 10
-            
-            break;
-        case 'a':
-            keys.left = true
-            break;
-        case 'd':
-            keys.right = true
-            break;
-    
-        default:
-            break;
-    }
-})
-
-window.addEventListener('keyup', (e) => {
-    switch (e.key) {
-        case 'a':
-            keys.left = false
-            break;
-        case 'd':
-            keys.right = false
-            break;
-    
-        default:
-            break;
-    }
-})
