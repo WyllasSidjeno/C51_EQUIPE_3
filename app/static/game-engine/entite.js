@@ -1,4 +1,5 @@
 import move from '/static/game-engine/keyEvent.js'
+import { TiledImage } from './TiledImage.js'
 
 export class Entite{
     constructor(x,y, {collisionBlock}) {
@@ -9,15 +10,39 @@ export class Entite{
             y: y
         }
 
-        this.center = {
-            x: this.position.x + this.width / 2,
-            y: this.position.y + this.height / 2
+        this.spriteSettings = {
+            columnCount: 13,
+            rowCount: 21,
+            refreshDelay: 100,
+            loopColumns: true,
+            scale: 1.0
         }
 
-        this.width = 10
-        this.height = 16
-        this.moveX = 0
-        this.moveY = 0
+        this.state = {
+            idle: true,
+            running: false,
+            jumping: false,
+            falling: false,
+            attack: false
+        }
+
+        this.width = 14
+        this.height = 24
+
+        this.hero = new TiledImage(
+            "/static/Sprite/base.png",
+            this.spriteSettings.columnCount,
+            this.spriteSettings.rowCount,
+            this.spriteSettings.refreshDelay,
+            this.spriteSettings.loopColumns,
+            this.spriteSettings.scale,
+            this.canvas);
+		this.hero.changeRow(11)
+        this.hero.changeMinMaxInterval(0, 8)
+        this.hero.addImage('/static/Sprite/torso-base.png')
+        this.hero.addImage('/static/Sprite/leg-base.png')
+        this.hero.addImage('/static/Sprite/dagger.png')
+
 
         this.velocity = {
             x: 0,
@@ -41,20 +66,37 @@ export class Entite{
     }
 
     draw() {
-        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        this.hero.tick(this.position.x + this.width /2, this.position.y + this.height /3, this.ctx)
+        // this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
-    move() {
-        this.ctx.clearRect(this.position.x, this.position.y, this.width, this.height)
+    move(keys) {
+        if (keys.left){
+            this.hero.setPaused(false)
+            this.hero.changeRow(9)
+        } 
+        else if (keys.right) {
+            this.hero.setPaused(false)
+            this.hero.changeRow(11)
+        } 
+        else if (keys.up) {
+            this.hero.setPaused(false)
+            this.hero.changeRow(8)
+        } 
+        else if (keys.down) {
+            this.hero.setPaused(false)
+            this.hero.changeRow(8)
+        } 
+        else {
+            this.hero.setPaused(true)
+        }
+
+        // this.ctx.clearRect(this.position.x, this.position.y, this.width, this.height)
         this.position.x += this.velocity.x
 
         this.checkXCollision()
         this.applyGravity()
         this.checkYCollision()
-
-        
-        
-
     }
 
     checkXCollision() {

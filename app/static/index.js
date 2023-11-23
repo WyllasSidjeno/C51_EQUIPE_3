@@ -13,6 +13,7 @@ const FLECHEBAS = 40;
 const FLECHEHAUT = 38;
 
 let lvlGen
+let level = 0
 
 let zoneDeJeu
 let joueur
@@ -53,8 +54,9 @@ window.addEventListener('load', () => {
     lvlGen = new LevelGenerator(map)
     console.log(map)
 
-    
-    collisionBlock = lvlGen.parseLevel2D(5)
+    level = 5
+
+    collisionBlock = lvlGen.parseLevel2D(level)
     
     console.log(collisionBlock)
 
@@ -78,9 +80,9 @@ window.addEventListener('load', () => {
     console.log(cameraMove)
     console.log(mapBorder)
 
-    ctx.fillStyle = "green"
+    // ctx.fillStyle = "green"
     joueur = new Entite(100, 60, {collisionBlock , collisionDoor, collisionLadder})
-    joueur.draw(ctx)
+    // joueur.draw(ctx)
 
     animate()
 
@@ -91,29 +93,14 @@ const animate = () => {
     window.requestAnimationFrame(animate)
 
     ctxBg.clearRect(0, 0, canvas.width, canvas.height)
-    // lvlGen.draw_level(5)
+    lvlGen.draw_level(ctxBg, level)
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    collisionBlock.forEach(e => {
-        if (e.type == "block") ctx.fillStyle = "black"
-        else if (e.type == "ladder") ctx.fillStyle = "blue"
-        else if (e.type == "door") ctx.fillStyle = "red"
-        e.draw(ctx)
-    })
-
-
-
-    // collisionBlock.forEach(e => {
-    //     if (e.type == "block") ctx.fillStyle = "black"
-    //     else if (e.type == "ladder") ctx.fillStyle = "blue"
-    //     else if (e.type == "door") ctx.fillStyle = "red"
-    //     e.draw(ctx)
-    // })
-    
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height * 2)
 
     joueur.velocity.x = 0
     if (keys.left){
+        // Update du sprite personnage
+        joueur.hero.changeRow(11)
         // mouvement de camera vers la droite
         if (cameraMove.xAxisTanslation &&
             joueur.position.x < canvas.width / 3 + cameraMove.position.left &&
@@ -126,6 +113,8 @@ const animate = () => {
         joueur.velocity.x = -ENTITY_MOVE_X
     } 
     if (keys.right) {
+        // Update du sprite personnage
+        joueur.hero.changeRow(11)
         // mouvement de camera vers la gauche
         if (cameraMove.xAxisTanslation &&
             joueur.position.x > canvas.width /2 &&
@@ -177,10 +166,7 @@ const animate = () => {
             }
     }
 
-    
-
-
-    joueur.move()
+    joueur.move(keys)
     joueur.draw()
     
 } 

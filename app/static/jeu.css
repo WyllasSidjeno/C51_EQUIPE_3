@@ -1,9 +1,10 @@
 canvas{
-    top:0;
-    left:0;
     position: absolute;
-    height: 50vh;
-    width: 50vw;
+    height: 80vh;
+    width: 90vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 999;
 }
 
