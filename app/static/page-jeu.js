@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
    mute.style.display = 'none';
    volume.style.display = 'none';
 
-   draw_level(map, 0);
+   draw_level(map, 5);
    
 })
 
@@ -44,7 +44,7 @@ const draw_level = (data, level_gotten) => {
                         let img = new Image();
                         img.src = element.__tilesetRelPath;
                         img.onload = () => {
-                            let canvas = document.querySelector('#canvas');
+                            let canvas = document.querySelector('#game-bg');
                             let ctx = canvas.getContext("2d");
                             ctx.drawImage(img,
                                 tile.src[0],

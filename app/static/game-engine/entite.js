@@ -2,7 +2,7 @@ import move from '/static/game-engine/keyEvent.js'
 
 export class Entite{
     constructor(x,y, {collisionBlock}) {
-        this.canvas = document.querySelector('canvas')
+        this.canvas = document.querySelector('#game')
         this.ctx = this.canvas.getContext('2d')
         this.position = {
             x: x,

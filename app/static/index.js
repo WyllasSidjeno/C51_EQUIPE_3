@@ -12,6 +12,8 @@ const FLECHEDROITE = 39;
 const FLECHEBAS = 40;
 const FLECHEHAUT = 38;
 
+let lvlGen
+
 let zoneDeJeu
 let joueur
 let intervalle
@@ -20,8 +22,12 @@ let collisionBlock = []
 let collisionDoor = []
 let collisionLadder = []
 
-let canvas = document.querySelector('#canvas')
+let canvas = document.querySelector('#game')
 let ctx = canvas.getContext('2d')
+
+let canvasBg = document.querySelector('#game-bg')
+let ctxBg = canvasBg.getContext('2d')
+
 let mapBorder = {
     top: canvas.height / 2,
     bottom: canvas.height / 2,
@@ -44,11 +50,12 @@ let cameraMove = {
 window.addEventListener('load', () => {
     
 
-    let lvlGen = new LevelGenerator(map)
+    lvlGen = new LevelGenerator(map)
     console.log(map)
 
     
     collisionBlock = lvlGen.parseLevel2D(5)
+    
     console.log(collisionBlock)
 
     collisionBlock.forEach(e => {
@@ -66,6 +73,8 @@ window.addEventListener('load', () => {
     cameraMove.position.top = mapBorder.top
     cameraMove.position.bottom = canvas.height
 
+    
+
     console.log(cameraMove)
     console.log(mapBorder)
 
@@ -81,14 +90,25 @@ window.addEventListener('load', () => {
 const animate = () => {
     window.requestAnimationFrame(animate)
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctxBg.clearRect(0, 0, canvas.width, canvas.height)
+    // lvlGen.draw_level(5)
 
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     collisionBlock.forEach(e => {
         if (e.type == "block") ctx.fillStyle = "black"
         else if (e.type == "ladder") ctx.fillStyle = "blue"
         else if (e.type == "door") ctx.fillStyle = "red"
         e.draw(ctx)
     })
+
+
+
+    // collisionBlock.forEach(e => {
+    //     if (e.type == "block") ctx.fillStyle = "black"
+    //     else if (e.type == "ladder") ctx.fillStyle = "blue"
+    //     else if (e.type == "door") ctx.fillStyle = "red"
+    //     e.draw(ctx)
+    // })
     
 
 
@@ -101,6 +121,7 @@ const animate = () => {
                 cameraMove.position.left -= ENTITY_MOVE_X
                 cameraMove.position.right -= ENTITY_MOVE_X
                 ctx.translate(ENTITY_MOVE_X, 0)
+                ctxBg.translate(ENTITY_MOVE_X, 0)
             }
         joueur.velocity.x = -ENTITY_MOVE_X
     } 
@@ -112,6 +133,7 @@ const animate = () => {
                 cameraMove.position.right += ENTITY_MOVE_X
                 cameraMove.position.left += ENTITY_MOVE_X
                 ctx.translate(-ENTITY_MOVE_X, 0)
+                ctxBg.translate(-ENTITY_MOVE_X, 0)
             }
         joueur.velocity.x = ENTITY_MOVE_X
     } 
@@ -123,6 +145,7 @@ const animate = () => {
                 cameraMove.position.top -= ENTITY_MOVE_Y
                 cameraMove.position.bottom -= ENTITY_MOVE_Y
                 ctx.translate(0, ENTITY_MOVE_Y)
+                ctxBg.translate(0, ENTITY_MOVE_Y)
             }
         if (joueur.ladder) joueur.position.y -= ENTITY_MOVE_Y
         else if (joueur.velocity.y === 0) joueur.velocity.y = -10
@@ -136,6 +159,7 @@ const animate = () => {
                 cameraMove.position.top += ENTITY_MOVE_Y
                 cameraMove.position.bottom += ENTITY_MOVE_Y
                 ctx.translate(0, -ENTITY_MOVE_Y)
+                ctxBg.translate(0, -ENTITY_MOVE_Y)
             }
         joueur.position.y += ENTITY_MOVE_Y
         
@@ -149,6 +173,7 @@ const animate = () => {
                 cameraMove.position.top += ENTITY_MOVE_Y
                 cameraMove.position.bottom += ENTITY_MOVE_Y
                 ctx.translate(0, -ENTITY_MOVE_Y)
+                ctxBg.translate(0, -ENTITY_MOVE_Y)
             }
     }
 

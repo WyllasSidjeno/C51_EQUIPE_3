@@ -1,4 +1,4 @@
-#game{
+canvas{
     top:0;
     left:0;
     position: absolute;
@@ -6,3 +6,5 @@
     width: 50vw;
     z-index: 999;
 }
+
+
