@@ -8,7 +8,13 @@ export class Entite{
             x: x,
             y: y
         }
-        this.width = 16
+
+        this.center = {
+            x: this.position.x + this.width / 2,
+            y: this.position.y + this.height / 2
+        }
+
+        this.width = 10
         this.height = 16
         this.moveX = 0
         this.moveY = 0
@@ -30,13 +36,11 @@ export class Entite{
 
         this.collisionBlock = collisionBlock
 
-        this.index = null;
-
+        this.ladder = false
         this.key = null;
     }
 
     draw() {
-        this.ctx.fillStyle = "blue"
         this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -55,54 +59,88 @@ export class Entite{
         // Collision detection along the x axis
         for (let i = 0; i < this.collisionBlock.length; i++) {
             const collisionBlock = this.collisionBlock[i];
+            const type = collisionBlock.type
+
             if (this.position.x <= collisionBlock.position.x + collisionBlock.width &&
                 this.position.x + this.width >= collisionBlock.position.x &&
                 this.position.y + this.height > collisionBlock.position.y &&
                 this.position.y < collisionBlock.position.y + collisionBlock.height
                 ) {
-                    this.index = i;
-                    console.log('col X')
-                    if (this.velocity.x < -0) { // Le joueur va vers la gauche
-                        this.position.x = collisionBlock.position.x + collisionBlock.width
-                        break
+                    
+                    if (type == "block") {
+                        this.ladder = false
+                        if (this.velocity.x < -0) { // Le joueur va vers la gauche
+                            this.position.x = collisionBlock.position.x + collisionBlock.width
+                            break
+                        }
+                        if (this.velocity.x > 0) { // Le joueur va vers la droite
+                            this.position.x = collisionBlock.position.x - this.width
+                            break
+                        }
                     }
-                    if (this.velocity.x > 0) { // Le joueur va vers la droite
-                        this.position.x = collisionBlock.position.x - this.width
-                        break
-                    }    
+                    if (type == "ladder") {
+                        if (this.position.x <= collisionBlock.position.x + collisionBlock.width &&
+                            this.position.x + this.width >= collisionBlock.position.x &&
+                            this.position.y + this.height > collisionBlock.position.y &&
+                            this.position.y < collisionBlock.position.y + collisionBlock.height
+                        ){
+                            // Si sur une echelle exit la function
+                            this.ladder = true
+                            return
+                        }
+                         
+                    }
             }
         }
+        // Si on est pas sur une echelle reset ladder status pour reactiver la gravité
+        this.ladder = false
     }
 
     applyGravity() {
-        this.velocity.y += this.gravity
-        this.position.y += this.velocity.y
+        if (!this.ladder){
+            this.velocity.y += this.gravity
+            this.position.y += this.velocity.y
+        }
     }
 
     checkYCollision() {
         for (let i = 0; i < this.collisionBlock.length; i++) {
             const collisionBlock = this.collisionBlock[i];
-    
+            const type = collisionBlock.type
             if (this.position.y + this.height >= collisionBlock.position.y &&
                 this.position.y <= collisionBlock.position.y + collisionBlock.height &&
                 this.position.x < collisionBlock.position.x + collisionBlock.width &&
                 this.position.x + this.width > collisionBlock.position.x 
             ) {
-                console.log('col Y')
-                if (this.velocity.y > 0) { // Le joueur descend
-                    this.velocity.y = 0;
-                    this.position.y = collisionBlock.position.y - this.height;
-                    break
+                if (type == "ladder") {
+                    if (this.position.x <= collisionBlock.position.x + collisionBlock.width &&
+                        this.position.x + this.width >= collisionBlock.position.x  &&
+                        this.position.y + this.height > collisionBlock.position.y &&
+                        this.position.y < collisionBlock.position.y + collisionBlock.height
+                    ){
+                        this.ladder = true
+                        // Si sur une echelle exit la function
+                        return                    
+                    }
                 }
-                if (this.velocity.y < 0) { // Le joueur monte
-                    this.velocity.y = 0;
-                    this.position.y = collisionBlock.position.y + collisionBlock.height;
-                    break
-                }
-                this.velocity.y = 0;
-                break
+                if (type == "block") {
+                    this.ladder = false
+                    if (this.velocity.y > 0) { // Le joueur descend
+                        this.velocity.y = 0;
+                        this.position.y = collisionBlock.position.y - this.height;
+                        break
+                    }
+                    if (this.velocity.y < 0) { // Le joueur monte
+                        this.velocity.y = 0;
+                        this.position.y = collisionBlock.position.y + collisionBlock.height;
+                        break
+                    }
+                } 
+                 
             }
         }
+        // Si on est pas sur une echelle reset ladder status pour reactiver la gravité
+        this.ladder = false
     }
 }
     

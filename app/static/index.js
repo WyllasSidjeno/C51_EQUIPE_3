@@ -26,14 +26,21 @@ window.addEventListener('load', () => {
     let ctx = canvas.getContext('2d')
 
     let lvlGen = new LevelGenerator(map)
+    console.log(map)
 
     
-    collisionBlock = lvlGen.parseLevel2D(0)
+    let collisionBlock = lvlGen.parseLevel2D(5)
+
     collisionBlock.forEach(e => {
+        if (e.type == "block") ctx.fillStyle = "black"
+        else if (e.type == "ladder") ctx.fillStyle = "blue"
+        else if (e.type == "door") ctx.fillStyle = "red"
+
         e.draw(ctx)
     })
 
-    joueur = new Entite(100, 60, {collisionBlock})
+    ctx.fillStyle = "green"
+    joueur = new Entite(100, 60, {collisionBlock , collisionDoor, collisionLadder})
     joueur.draw(ctx)
 
     animate()
@@ -43,14 +50,20 @@ window.addEventListener('load', () => {
 
 const animate = () => {
     window.requestAnimationFrame(animate)
+    console.log(joueur.ladder)
 
     joueur.velocity.x = 0
     if (keys.left) joueur.velocity.x = -ENTITY_MOVE_X
     if (keys.right) joueur.velocity.x = ENTITY_MOVE_X
     if (keys.up) {
-        if (joueur.velocity.y === 0) joueur.velocity.y = -25
+        if (joueur.ladder) joueur.position.y -= ENTITY_MOVE_Y
+        else if (joueur.velocity.y === 0) joueur.velocity.y = -10
         else keys.up = false
     }
+    if (keys.down && joueur.ladder) {
+        joueur.position.y += ENTITY_MOVE_Y
+    }
+    
 
 
     joueur.move()

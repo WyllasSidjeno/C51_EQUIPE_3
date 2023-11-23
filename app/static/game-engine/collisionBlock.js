@@ -1,12 +1,12 @@
 export class collisionBlock {
-    constructor({position}) {
+    constructor({position}, type) {
         this.position = position
         this.width = 16
         this.height = 16
+        this.type = type
     }
 
     draw(ctx) {
-        ctx.fillStyle = "red"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }

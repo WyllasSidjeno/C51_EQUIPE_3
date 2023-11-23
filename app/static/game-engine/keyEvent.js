@@ -15,7 +15,8 @@ window.addEventListener('keydown', (e) => {
         case 'd':
             keys.right = true
             break;
-    
+		case 's':
+			keys.down = true
         default:
             break;
     }
@@ -29,7 +30,12 @@ window.addEventListener('keyup', (e) => {
         case 'd':
             keys.right = false
             break;
-    
+		case 'w':
+			keys.up = false
+			break;
+		case 's':
+			keys.down = false
+			break;		
         default:
             break;
     }
