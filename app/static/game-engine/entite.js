@@ -51,6 +51,8 @@ export class Entite{
         this.checkXCollision()
         this.applyGravity()
         this.checkYCollision()
+
+        
         
 
     }
@@ -87,8 +89,7 @@ export class Entite{
                             // Si sur une echelle exit la function
                             this.ladder = true
                             return
-                        }
-                         
+                        } 
                     }
             }
         }

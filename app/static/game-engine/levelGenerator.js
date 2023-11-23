@@ -4,6 +4,10 @@ export class LevelGenerator {
     constructor(data) {
         this.data = data
         this.dataLevel = null
+        this.size = {
+            width: 0,
+            height: 0
+        }
     }
 
     parseLevel2D(level) {
@@ -15,8 +19,12 @@ export class LevelGenerator {
 
         let canvas = document.querySelector('#canvas')
 
-        canvas.width = mapWidth * 16
-        canvas.height = mapHeight * 16
+        this.size.width = mapWidth * 16
+        this.size.height = mapHeight * 16
+        canvas.style.backgroundColor = 'beige'
+
+        canvas.width = 300
+        canvas.height = 200
 
         let blockList = []
         for (let i = 0; i < matrice.length; i += mapWidth) {
