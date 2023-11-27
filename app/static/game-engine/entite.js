@@ -63,6 +63,7 @@ export class Entite{
 
         this.ladder = false
         this.key = null;
+        this.side = true
     }
 
     draw() {
@@ -74,10 +75,12 @@ export class Entite{
         if (keys.left){
             this.hero.setPaused(false)
             this.hero.changeRow(9)
+            this.side = false
         } 
         else if (keys.right) {
             this.hero.setPaused(false)
             this.hero.changeRow(11)
+            this.side = true
         } 
         else if (keys.up) {
             this.hero.setPaused(false)
@@ -87,11 +90,14 @@ export class Entite{
             this.hero.setPaused(false)
             this.hero.changeRow(8)
         } 
-        else {
+        else if (keys.attack) {
+            console.log('attck')
+            this.attack()
+        }
+        else if (!this.state.attack) {
             this.hero.setPaused(true)
         }
 
-        // this.ctx.clearRect(this.position.x, this.position.y, this.width, this.height)
         this.position.x += this.velocity.x
 
         this.checkXCollision()
@@ -184,6 +190,20 @@ export class Entite{
         }
         // Si on est pas sur une echelle reset ladder status pour reactiver la gravité
         this.ladder = false
+    }
+
+    attack() {
+        this.hero.changeMinMaxInterval(0, 5)
+        if (this.side) this.hero.changeRow(15)
+        else this.hero.changeRow(13)
+
+        this.state.attack = true
+
+        setTimeout(() => {
+            this.state.attack = false
+        }, 1000)
+        
+        // this.hero.changeMinMaxInterval(0, 5)
     }
 }
     

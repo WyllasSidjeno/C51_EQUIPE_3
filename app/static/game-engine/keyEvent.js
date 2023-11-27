@@ -1,7 +1,8 @@
 let keys = {
 	left: false,
 	right: false,
-	up: false
+	up: false, 
+    attack: false
 }
 
 window.addEventListener('keydown', (e) => {
@@ -17,6 +18,10 @@ window.addEventListener('keydown', (e) => {
             break;
 		case 's':
 			keys.down = true
+            break;
+        case ' ':
+            keys.attack = true
+            break;
         default:
             break;
     }
@@ -35,7 +40,10 @@ window.addEventListener('keyup', (e) => {
 			break;
 		case 's':
 			keys.down = false
-			break;		
+			break;
+        case ' ':
+            keys.attack = true
+            break;	
         default:
             break;
     }

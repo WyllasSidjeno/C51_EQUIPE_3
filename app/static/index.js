@@ -29,6 +29,9 @@ let ctx = canvas.getContext('2d')
 let canvasBg = document.querySelector('#game-bg')
 let ctxBg = canvasBg.getContext('2d')
 
+ctxBg.imageSmoothingEnabled = true
+ctx.imageSmoothingEnabled = true
+
 let mapBorder = {
     top: canvas.height / 2,
     bottom: canvas.height / 2,
@@ -95,6 +98,8 @@ const animate = () => {
     ctxBg.clearRect(0, 0, canvas.width, canvas.height)
     lvlGen.draw_level(ctxBg, level)
 
+    
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height * 2)
 
     joueur.velocity.x = 0
