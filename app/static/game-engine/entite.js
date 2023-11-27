@@ -195,6 +195,9 @@ export class Entite{
     }
 
     attack() {
+        this.hero.changeCol(0)
+        this.hero.changeMinMaxInterval(0, 5)
+        
         if (this.side) this.hero.changeRow(15)
         else this.hero.changeRow(13)
 
@@ -202,6 +205,7 @@ export class Entite{
 
         setTimeout(() => {
             this.state.attack = false
+            this.hero.changeMinMaxInterval(0, 8)
         }, 1000)
         
     }
