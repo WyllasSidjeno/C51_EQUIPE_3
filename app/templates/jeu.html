@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block contenu %}
-    <!-- <script src="{{ url_for('static', filename='page-jeu.js')}}" type='module'></script> -->
+    <script src="{{ url_for('static', filename='page-jeu.js')}}" type='module'></script>
     <script src="{{ url_for('static', filename='map_1_matrix.json')}}"></script>
     <script src="{{ url_for('static', filename='index.js')}}"type='module'></script>
     <script src="{{ url_for('static', filename='entite.js')}}"type='module'></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='jeu.css')}}">
     <title>{% block titre %} Jeu {% endblock %}</title>
+
+    <div class="leave-container">
+        <a href="{{ url_for('index') }}" class="leave">Quitter</a>
+    </div>
 
     <canvas id="game-bg"></canvas>
     <canvas id ="game"></canvas>
