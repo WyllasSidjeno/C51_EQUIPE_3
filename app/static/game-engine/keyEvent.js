@@ -42,7 +42,7 @@ window.addEventListener('keyup', (e) => {
 			keys.down = false
 			break;
         case ' ':
-            keys.attack = true
+            keys.attack = false
             break;	
         default:
             break;

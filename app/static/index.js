@@ -95,11 +95,11 @@ window.addEventListener('load', () => {
 const animate = () => {
     window.requestAnimationFrame(animate)
 
+    // Clear et reaffiche l'image de background du niveau
     ctxBg.clearRect(0, 0, canvas.width, canvas.height)
     lvlGen.draw_level(ctxBg, level)
 
-    
-    
+    // Efface le personnage pour le redessinner a sa position actuelle
     ctx.clearRect(0, 0, canvas.width, canvas.height * 2)
 
     joueur.velocity.x = 0
@@ -142,7 +142,10 @@ const animate = () => {
                 ctxBg.translate(0, ENTITY_MOVE_Y)
             }
         if (joueur.ladder) joueur.position.y -= ENTITY_MOVE_Y
-        else if (joueur.velocity.y === 0) joueur.velocity.y = -10
+        else if (!joueur.state.jumping) {
+            joueur.velocity.y = -10
+            joueur.state.jumping = true
+        } 
         else keys.up = false
     }
     if (keys.down && joueur.ladder) {

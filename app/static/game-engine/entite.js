@@ -91,10 +91,12 @@ export class Entite{
             this.hero.changeRow(8)
         } 
         else if (keys.attack) {
-            console.log('attck')
-            this.attack()
+            console.log('.')
+            this.attack() 
         }
         else if (!this.state.attack) {
+            if (this.side) this.hero.changeRow(11)
+            else this.hero.changeRow(9)
             this.hero.setPaused(true)
         }
 
@@ -161,6 +163,7 @@ export class Entite{
                 this.position.x < collisionBlock.position.x + collisionBlock.width &&
                 this.position.x + this.width > collisionBlock.position.x 
             ) {
+                this.state.jumping = false
                 if (type == "ladder") {
                     if (this.position.x <= collisionBlock.position.x + collisionBlock.width &&
                         this.position.x + this.width >= collisionBlock.position.x  &&
@@ -184,8 +187,7 @@ export class Entite{
                         this.position.y = collisionBlock.position.y + collisionBlock.height;
                         break
                     }
-                } 
-                 
+                }
             }
         }
         // Si on est pas sur une echelle reset ladder status pour reactiver la gravité
@@ -193,7 +195,6 @@ export class Entite{
     }
 
     attack() {
-        this.hero.changeMinMaxInterval(0, 5)
         if (this.side) this.hero.changeRow(15)
         else this.hero.changeRow(13)
 
@@ -203,7 +204,6 @@ export class Entite{
             this.state.attack = false
         }, 1000)
         
-        // this.hero.changeMinMaxInterval(0, 5)
     }
 }
     
