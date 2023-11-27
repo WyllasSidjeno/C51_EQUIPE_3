@@ -2,6 +2,8 @@ import map from '/static/map_1_matrix.json' assert { type: 'json' }
 import { LevelGenerator } from '/static/game-engine/levelGenerator.js';
 import { Entite } from '/static/game-engine/entite.js';
 import keys from './game-engine/keyEvent.js';
+import { Ennemis } from './game-engine/Ennemis.js';
+export let attaqueEnnemi = false;
 
 const BLOCK_SIZE = 101
 const TEMPSINTERVALLE = 20;
@@ -22,6 +24,7 @@ let intervalle
 let collisionBlock = []
 let collisionDoor = []
 let collisionLadder = []
+let ennemisList = []
 
 let canvas = document.querySelector('#game')
 let ctx = canvas.getContext('2d')
@@ -82,11 +85,11 @@ window.addEventListener('load', () => {
 
     // ctx.fillStyle = "green"
     joueur = new Entite(100, 60, {collisionBlock , collisionDoor, collisionLadder})
+    ennemisList.push(new Ennemis(230, 60, {collisionBlock}));
+    console.log(ennemisList)
     // joueur.draw(ctx)
 
     animate()
-
-    
 })
 
 const animate = () => {
@@ -168,5 +171,8 @@ const animate = () => {
 
     joueur.move(keys)
     joueur.draw()
-    
+    ennemisList.forEach(ennemi => {
+        ennemi.move();
+        ennemi.draw();
+    });
 } 
