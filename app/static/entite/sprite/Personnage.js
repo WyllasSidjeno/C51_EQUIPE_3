@@ -4,7 +4,7 @@ import {move} from "/static/entite/sprite/move/deplacement.js"
 
 export class Personnage extends Entite {
 
-    constructor(){
+    constructor(x, y){
         super()
 
         // personnage state
@@ -37,8 +37,8 @@ export class Personnage extends Entite {
         this.hero.addImage('/static/Sprite/leg-base.png')
         this.hero.addImage('/static/Sprite/dagger.png')
 
-		this.x = 300;//position de depart en x
-		this.y = 160;//position de depart en y
+		this.x = x;//position de depart en x
+		this.y = y;//position de depart en y
 
         this.ground = 400;
 		this.speed = 1;
