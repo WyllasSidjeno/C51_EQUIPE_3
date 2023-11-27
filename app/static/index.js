@@ -15,9 +15,7 @@ const FLECHEHAUT = 38;
 let lvlGen
 let level = 0
 
-let zoneDeJeu
 let joueur
-let intervalle
 
 let collisionBlock = []
 let collisionDoor = []
@@ -52,8 +50,6 @@ let cameraMove = {
 
 
 window.addEventListener('load', () => {
-    
-
     lvlGen = new LevelGenerator(map)
     console.log(map)
 
