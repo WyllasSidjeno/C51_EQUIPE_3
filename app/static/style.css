@@ -228,11 +228,32 @@
     transition: background-color 1s ease-in-out;
 }
 
-.canvas {
-    /*background-color: #03e9f4;*/
-    position: fixed;
+/* .canvas {
+    background-image: url("../static/tilesets/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     bottom: 0;
+    position: fixed;
     left: 0;
     width: 100%;
     height: 100%;
+} */
+
+.floor {
+    position: fixed;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: 30%;
+}
+
+.test {
+    background-image: url("../static/email.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background-color: red;
+    z-index: 100;
 }

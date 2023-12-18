@@ -1,32 +1,61 @@
+// import map from '/static/map_1_matrix.json' assert { type: 'json' }
 window.addEventListener('load', () => {
+    
    let topnav = document.querySelector('.topnav');
    let mute = document.querySelector('#muted');
    let volume = document.querySelector('#volumeOn');
-   let canvas = document.querySelector('.canvas');
-   let floor = document.querySelector('#floor');
-   const ctx = canvas.getContext("2d");
+   
 
    topnav.style.display = 'none';
    mute.style.display = 'none';
    volume.style.display = 'none';
-
-   fetch('/static/map1.json')
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data.defs["layers"]);
-
-        const layers = data.defs["layers"];
-        const level = data.levels[0];
-        const floorPos = layers.find(layer => layer.identifier === "Floor");
-        const floorImg = level.layerInstances.find(level => level.__identifier === "Floor");
-        
-        let newFloor = document.createElement('div');
-        floor.appendChild(newFloor);
-        newFloor.classList.add('floor');
-        // newFloor.style.backgroundImage = "url('/static/img/floor.png')";
-        newFloor.style.width = floorPos.gridSize + "px";
-        
-        console.log(floorImg);
-    })
-    .catch(error => console.log("JSON parsing error" + error));
 });
+
+// const draw_level = (data, level_gotten) => {
+//     let lvl = 'Level_' + level_gotten;
+//     let ctr = ['Walls','WallsFar', 'WallDeco', 'Wood', 'Environment', 'Floor', 'WallSides', 'BigLadders', 'SmallLaddersAndDoors']
+
+//     data['levels'].forEach(level => {
+//         if (level['identifier'] === lvl){
+
+//             let tab = [];
+//             level['layerInstances'].forEach(layer => {
+//                 tab.push(layer);
+//             });
+
+//             // put the elements in the right order
+//             let tabOrdre = [];
+//             for (let i = 0; i < ctr.length; i++) {
+//                 for (let j = 0; j < tab.length; j++) {
+//                     if (ctr[i] === tab[j]['__identifier']) {
+//                         let temp = tab[j];
+//                         tabOrdre.push(temp);
+//                     }
+//                 }
+//             }
+
+//             level['layerInstances'].forEach(layer => {
+//                 tabOrdre.forEach(element => {
+//                     element.gridTiles.forEach(tile => {
+//                         let img = new Image();
+//                         img.src = element.__tilesetRelPath;
+//                         img.onload = () => {
+//                             let canvas = document.querySelector('#game-bg');
+//                             let ctx = canvas.getContext("2d");
+//                             ctx.drawImage(img,
+//                                 tile.src[0],
+//                                 tile.src[1],
+//                                 element.__gridSize,
+//                                 element.__gridSize,
+//                                 tile.px[0],
+//                                 tile.px[1],
+//                                 element.__gridSize,
+//                                 element.__gridSize
+//                             );
+//                         }
+//                     });
+//                 });
+//             })
+//         }
+//     });
+// }
