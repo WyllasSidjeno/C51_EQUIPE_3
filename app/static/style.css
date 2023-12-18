@@ -41,18 +41,17 @@
     background-image: url("../static/commentaires-background.gif");
     background-size: cover;
     background-repeat: no-repeat;
-    overflow: hidden;
 }
 
 .apropos {
-    background-image: url("../static/apropos-background.png");
+    background-image: url("../static/apropos-background.gif");
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
 }
 
 .contact {
-    background-image: url("../static/contacts-background.png");
+    background-image: url("../static/contacts-background.gif");
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -79,7 +78,7 @@
     border:1px solid #ddd;
 	width: 99%;
 	padding:5px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background-color: rgba(255, 140, 0, 0.4);
     box-sizing: border-box;
@@ -100,6 +99,27 @@
     border-radius: 3px;
 }
 
+.comment-output {
+    background-color: rgba(117, 180, 35, 0.2);
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+.edit-comment {
+    background-image: url('../static/edit-comment.png') ;
+    background-size: cover;
+    background-color: transparent;
+    margin: auto;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+}
 .save-btn {
     position: relative;
     width: 100px;
